@@ -28,6 +28,12 @@ public class EmployeRestController {
         return employeService.save(employe);
     }
 
+    @PutMapping("/{id}")
+    public Employe update(@PathVariable Long id, @RequestBody Employe employe) {
+        employe.setId(id);
+        return employeService.save(employe);
+    }
+
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         employeService.delete(id);
