@@ -10,3 +10,5 @@ target
 .idea
 /sinistre-commun.iml
 /test.txt
+.idea/*
+.idea/misc.xml
