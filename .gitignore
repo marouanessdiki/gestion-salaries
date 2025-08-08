@@ -1,0 +1,12 @@
+.project
+.factorypath
+.settings
+.classpath
+target
+.externalToolBuilders
+
+
+.apt_generated
+.idea
+/sinistre-commun.iml
+/test.txt
