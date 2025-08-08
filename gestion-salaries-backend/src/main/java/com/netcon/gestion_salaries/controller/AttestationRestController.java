@@ -7,6 +7,7 @@ import com.netcon.gestion_salaries.entity.Employe;
 import com.netcon.gestion_salaries.records.AttestationDto;
 import com.netcon.gestion_salaries.service.AttestationServiceImpl;
 import com.netcon.gestion_salaries.service.EmployeServiceImpl;
+import com.netcon.gestion_salaries.service.inteface.IAttestationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -24,7 +25,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 public class AttestationRestController {
 
-    private final AttestationServiceImpl attestationService;
+    private final IAttestationService attestationService;
     private final AttestationMapper attestationMapper;
 
     @PostMapping
