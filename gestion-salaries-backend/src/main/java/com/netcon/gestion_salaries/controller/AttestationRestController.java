@@ -1,12 +1,9 @@
 package com.netcon.gestion_salaries.controller;
 
 import com.netcon.gestion_salaries.controller.data.AttestationCmd;
-import com.netcon.gestion_salaries.controller.mappers.AttestationMapper;
-import com.netcon.gestion_salaries.entity.Attestation;
-import com.netcon.gestion_salaries.entity.Employe;
+import com.netcon.gestion_salaries.controller.mappers.AttestationCmdMapper;
 import com.netcon.gestion_salaries.records.AttestationDto;
-import com.netcon.gestion_salaries.service.AttestationServiceImpl;
-import com.netcon.gestion_salaries.service.EmployeServiceImpl;
+import com.netcon.gestion_salaries.service.inteface.IAttestationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -24,12 +21,12 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 public class AttestationRestController {
 
-    private final AttestationServiceImpl attestationService;
-    private final AttestationMapper attestationMapper;
+    private final IAttestationService attestationService;
+    private final AttestationCmdMapper attestationMapper;
 
     @PostMapping
     public AttestationDto save(@RequestBody AttestationCmd attestationCmd) throws Exception {
-        
+
         AttestationDto attestationDto = attestationMapper.from(attestationCmd);
         attestationService.save(attestationDto);
         return attestationService.generateAndSave(attestationDto);

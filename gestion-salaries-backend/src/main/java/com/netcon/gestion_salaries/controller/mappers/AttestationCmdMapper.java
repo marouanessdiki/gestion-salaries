@@ -6,8 +6,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.NullValueMappingStrategy;
 
-@Mapper(componentModel = "spring", uses = { EmployeMapper.class }, nullValueMappingStrategy = NullValueMappingStrategy.RETURN_NULL, nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
-public interface AttestationMapper {
-    
+@Mapper(componentModel = "spring", uses = {EmployeCmdMapper.class}, nullValueMappingStrategy = NullValueMappingStrategy.RETURN_NULL, nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
+public interface AttestationCmdMapper {
+
     AttestationDto from(AttestationCmd attestationCmd);
 }

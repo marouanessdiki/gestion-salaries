@@ -17,20 +17,21 @@ import java.util.Optional;
 @Component
 @RequiredArgsConstructor
 public class AttestationDaoImpl implements IAttestationDao {
-    
+
     private final AttestationRepository attestationRepository;
     private final EmployeRepository employeRepository;
     private final AttestationMapper attestationMapper;
+
     @Override
-    public List<AttestationDto> findByEmployeId(Long employeId){
+    public List<AttestationDto> findByEmployeId(Long employeId) {
         List<Attestation> attestation = attestationRepository.findByEmployeId(employeId);
         return attestationMapper.fromList(attestation);
     }
-    
+
     @Override
-    public AttestationDto save(AttestationDto attestationDto){
-        Optional<Employe> employe =  employeRepository.findById(attestationDto.getEmployeeId());
-        if(employe.isEmpty()){
+    public AttestationDto save(AttestationDto attestationDto) {
+        Optional<Employe> employe = employeRepository.findById(attestationDto.getEmployeeId());
+        if (employe.isEmpty()) {
             throw new EmployeException("Employee n'existe pas");
         }
         Attestation attestation = attestationMapper.from(attestationDto);
@@ -38,15 +39,16 @@ public class AttestationDaoImpl implements IAttestationDao {
         Attestation savedAttestation = attestationRepository.save(attestation);
         return attestationMapper.from(savedAttestation);
     }
-    
+
     @Override
-    public List<AttestationDto> findAll(){
+    public List<AttestationDto> findAll() {
         //TODO
+        return null;
     }
-    
+
     @Override
-    public AttestationDto findById(Long id){
+    public AttestationDto findById(Long id) {
         //TODO
-    
+        return null;
     }
 }
