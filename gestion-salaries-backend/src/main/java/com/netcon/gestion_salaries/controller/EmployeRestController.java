@@ -23,7 +23,7 @@ public class EmployeRestController {
 
     @GetMapping("/{id}")
     public EmployeDto getOne(@PathVariable Long id) {
-        return employeService.findById(id).orElseThrow();
+        return employeService.findById(id);
     }
 
     @PostMapping

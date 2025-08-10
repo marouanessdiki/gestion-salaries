@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -26,7 +25,7 @@ public class EmployeServiceImpl implements IEmployeService {
         employeDao.deleteById(id);
     }
 
-    public Optional<EmployeDto> findById(Long id) {
+    public EmployeDto findById(Long id) {
         return employeDao.findById(id);
     }
 }
