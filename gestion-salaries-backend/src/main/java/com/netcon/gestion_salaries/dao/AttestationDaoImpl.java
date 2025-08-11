@@ -1,10 +1,10 @@
 package com.netcon.gestion_salaries.dao;
 
-import com.netcon.gestion_salaries.exceptions.EmployeException;
 import com.netcon.gestion_salaries.dao.inteface.IAttestationDao;
 import com.netcon.gestion_salaries.dao.mappers.AttestationMapper;
 import com.netcon.gestion_salaries.entity.Attestation;
 import com.netcon.gestion_salaries.entity.Employe;
+import com.netcon.gestion_salaries.exceptions.EmployeException;
 import com.netcon.gestion_salaries.records.AttestationDto;
 import com.netcon.gestion_salaries.repository.AttestationRepository;
 import com.netcon.gestion_salaries.repository.EmployeRepository;
@@ -42,13 +42,11 @@ public class AttestationDaoImpl implements IAttestationDao {
 
     @Override
     public List<AttestationDto> findAll() {
-        //TODO
-        return null;
+        return attestationMapper.fromList(attestationRepository.findAll());
     }
 
     @Override
     public AttestationDto findById(Long id) {
-        //TODO
-        return null;
+        return attestationMapper.from(attestationRepository.findById(id).orElse(null));
     }
 }
