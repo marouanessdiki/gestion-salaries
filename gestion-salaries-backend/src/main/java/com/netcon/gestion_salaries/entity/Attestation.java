@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "attestation")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,11 +17,15 @@ public class Attestation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private Employe employe;
+    @Column(name = "employe_id")
+    private Long employeId;
 
+    @Column(name = "type_attestation")
     private String typeAttestation; // Travail ou Salaire
+    
+    @Column(name = "date_generation")
     private LocalDateTime dateGeneration;
 
+    @Column(name = "chemin_fichier")
     private String cheminFichier;
 }

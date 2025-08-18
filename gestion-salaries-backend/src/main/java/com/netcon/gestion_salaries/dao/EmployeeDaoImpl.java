@@ -1,43 +1,51 @@
 package com.netcon.gestion_salaries.dao;
 
-import com.netcon.gestion_salaries.dao.inteface.IAttestationDao;
 import com.netcon.gestion_salaries.dao.inteface.IEmployeDao;
-import com.netcon.gestion_salaries.dao.mappers.AttestationMapper;
-import com.netcon.gestion_salaries.entity.Attestation;
+import com.netcon.gestion_salaries.dao.mappers.EmployeMapper;
 import com.netcon.gestion_salaries.entity.Employe;
 import com.netcon.gestion_salaries.exceptions.EmployeException;
-import com.netcon.gestion_salaries.records.AttestationDto;
 import com.netcon.gestion_salaries.records.EmployeDto;
-import com.netcon.gestion_salaries.repository.AttestationRepository;
 import com.netcon.gestion_salaries.repository.EmployeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-//TODO
 public class EmployeeDaoImpl implements IEmployeDao {
+    
+    private final EmployeRepository employeRepository;
+    private final EmployeMapper employeMapper;
     
     @Override
     public List<EmployeDto> findAll() {
-        return null;
+        List<Employe> employes = employeRepository.findAll();
+        return employes.stream()
+                .map(employeMapper::from)
+                .collect(Collectors.toList());
     }
     
     @Override
-    public EmployeDto save(EmployeDto e) {
-        return null;
+    public EmployeDto save(EmployeDto dto) {
+        Employe employe = employeMapper.from(dto);
+        Employe savedEmploye = employeRepository.save(employe);
+        return employeMapper.from(savedEmploye);
     }
     
     @Override
     public void deleteById(Long id) {
-    
+        if (!employeRepository.existsById(id)) {
+            throw new EmployeException("Employé n'existe pas");
+        }
+        employeRepository.deleteById(id);
     }
     
     @Override
     public Optional<EmployeDto> findById(Long id) {
-        return Optional.empty();
+        Optional<Employe> employe = employeRepository.findById(id);
+        return employe.map(employeMapper::from);
     }
 }

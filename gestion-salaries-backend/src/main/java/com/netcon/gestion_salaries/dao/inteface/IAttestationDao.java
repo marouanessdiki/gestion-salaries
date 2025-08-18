@@ -12,4 +12,8 @@ public interface IAttestationDao {
     List<AttestationDto> findAll();
     
     AttestationDto findById(Long id);
+    
+    void deleteById(Long id);
+
+    void updateCheminFichier(Long id, String path);
 }

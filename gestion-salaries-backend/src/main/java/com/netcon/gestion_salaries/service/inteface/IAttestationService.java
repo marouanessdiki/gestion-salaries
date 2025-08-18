@@ -17,4 +17,5 @@ public interface IAttestationService {
     
     AttestationDto generateAndSave(AttestationDto attestation) throws Exception ;
     
+    void deleteById(Long id);
 }

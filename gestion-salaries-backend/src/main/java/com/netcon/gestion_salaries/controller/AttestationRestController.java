@@ -8,9 +8,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -26,9 +28,8 @@ public class AttestationRestController {
 
     @PostMapping
     public AttestationDto save(@RequestBody AttestationCmd attestationCmd) throws Exception {
-
         AttestationDto attestationDto = attestationMapper.from(attestationCmd);
-        attestationService.save(attestationDto);
+        // Only generate and save once to avoid duplicates
         return attestationService.generateAndSave(attestationDto);
     }
 
@@ -46,11 +47,45 @@ public class AttestationRestController {
     public ResponseEntity<Resource> download(@PathVariable Long id) throws Exception {
         AttestationDto attestation = attestationService.findById(id);
 
-        Path path = Paths.get(attestation.getCheminFichier());
+        String chemin = attestation.getCheminFichier();
+        if (chemin == null || chemin.isBlank()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // Normalize legacy values like "/attestations/attestation_1.pdf" -> "pdfs/attestation_1.pdf"
+        String normalized = chemin.replace('\\', '/');
+        if (normalized.startsWith("/attestations/")) {
+            String fileName = java.nio.file.Paths.get(normalized).getFileName().toString();
+            normalized = "pdfs/" + fileName;
+        }
+
+        java.nio.file.Path path = java.nio.file.Paths.get(normalized);
+
+        // Fallback: if the path still doesn't exist, try putting the filename under pdfs/
+        if (!java.nio.file.Files.exists(path) || !java.nio.file.Files.isReadable(path)) {
+            String fileName = java.nio.file.Paths.get(chemin).getFileName().toString();
+            java.nio.file.Path alt = java.nio.file.Paths.get("pdfs", fileName);
+            if (java.nio.file.Files.exists(alt) && java.nio.file.Files.isReadable(alt)) {
+                path = alt;
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        }
+
         Resource resource = new UrlResource(path.toUri());
+        if (!resource.exists() || !resource.isReadable()) {
+            return ResponseEntity.notFound().build();
+        }
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + path.getFileName() + "\"")
+                .contentType(MediaType.APPLICATION_PDF)
                 .body(resource);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) throws Exception {
+        attestationService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

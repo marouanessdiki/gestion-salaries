@@ -8,5 +8,5 @@ import org.mapstruct.NullValueMappingStrategy;
 
 @Mapper(componentModel = "spring", nullValueMappingStrategy = NullValueMappingStrategy.RETURN_NULL, nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
 public interface EmployeCmdMapper {
-    EmployeDto from(EmployeCmd attestationCmd);
+    EmployeDto from(EmployeCmd employeCmd);
 }
