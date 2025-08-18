@@ -3,7 +3,6 @@ package com.netcon.gestion_salaries.dao.inteface;
 import com.netcon.gestion_salaries.records.EmployeDto;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface IEmployeDao {
     List<EmployeDto> findAll();
@@ -12,5 +11,5 @@ public interface IEmployeDao {
     
     void deleteById(Long id);
     
-    Optional<EmployeDto> findById(Long id);
+    EmployeDto findById(Long id);
 }
