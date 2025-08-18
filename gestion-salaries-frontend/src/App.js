@@ -39,9 +39,7 @@ function App() {
     const [showForm, setShowForm] = useState(false);
     const [selected, setSelected] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn') === 'true');
-
-    console.log('App rendered, isLoggedIn:', isLoggedIn);
-    console.log('localStorage isLoggedIn:', localStorage.getItem('isLoggedIn'));
+    const [error, setError] = useState(null);
 
     const handleLogout = () => {
         localStorage.removeItem('isLoggedIn');
@@ -50,7 +48,23 @@ function App() {
     };
 
     const fetchEmployes = () => {
-        api.get('/employes').then(res => setEmployes(res.data));
+        console.log('Fetching employees...');
+        api.get('/employes')
+            .then(res => {
+                console.log('Employees response:', res.data);
+                if (Array.isArray(res.data)) {
+                    setEmployes(res.data);
+                } else {
+                    console.error('Expected array but got:', typeof res.data, res.data);
+                    setEmployes([]);
+                }
+            })
+            .catch(err => {
+                console.error('Error fetching employees:', err);
+                console.error('Error response:', err.response);
+                setError(`Failed to fetch employees: ${err.message}`);
+                setEmployes([]);
+            });
     };
 
     useEffect(() => {
@@ -72,6 +86,25 @@ function App() {
         setSelected(null);
         fetchEmployes();
     };
+
+    // If there's an error, show it
+    if (error) {
+        return (
+            <div style={{ padding: '20px', textAlign: 'center' }}>
+                <h2>Error: {error}</h2>
+                <button onClick={() => setError(null)}>Try Again</button>
+            </div>
+        );
+    }
+
+    // Show loading state while checking authentication
+    if (isLoggedIn === undefined) {
+        return (
+            <div style={{ padding: '20px', textAlign: 'center' }}>
+                <h2>Loading...</h2>
+            </div>
+        );
+    }
 
     return (
         <ThemeProvider theme={theme}>

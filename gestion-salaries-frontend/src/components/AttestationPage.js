@@ -9,6 +9,13 @@ const AttestationPage = () => {
     const [attestations, setAttestations] = useState([]);
     const [selected, setSelected] = useState("");
     const [type, setType] = useState("Travail");
+    const [generating, setGenerating] = useState(false);
+
+    // Helper to render employee label using name when available
+    const getEmployeLabel = (employeId) => {
+        const emp = Array.isArray(employes) ? employes.find(e => e.id === employeId) : undefined;
+        return emp ? `${emp.nom} ${emp.prenom}` : `ID: ${employeId}`;
+    };
 
     useEffect(() => {
         api.get("/employes").then((res) => setEmployes(res.data));
@@ -22,15 +29,23 @@ const AttestationPage = () => {
     };
 
     const generateAttestation = () => {
+        if (!selected) {
+            alert("Veuillez sélectionner un employé");
+            return;
+        }
+        setGenerating(true);
         api.post("/attestations", {
-            employe: { id: selected },
+            employeId: selected,
             typeAttestation: type,
         })
             .then(() => {
-                alert("Attestation générée");
                 loadAttestations();
             })
-            .catch((err) => console.error(err));
+            .catch((err) => {
+                console.error(err);
+                alert("Erreur lors de la génération de l'attestation");
+            })
+            .finally(() => setGenerating(false));
     };
 
     const deleteAttestation = (id) => {
@@ -83,11 +98,11 @@ const AttestationPage = () => {
                     <Button
                         variant="contained"
                         color="primary"
-                        disabled={!selected}
+                        disabled={!selected || generating}
                         onClick={generateAttestation}
                         size="large"
                     >
-                        Générer
+                        {generating ? 'Génération...' : 'Générer'}
                     </Button>
                 </Stack>
                 <Typography variant="h6" fontWeight={600} gutterBottom>Attestations générées</Typography>
@@ -95,8 +110,7 @@ const AttestationPage = () => {
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell>ID</TableCell>
-                                <TableCell>Salarié</TableCell>
+                                <TableCell>Salarié (ID)</TableCell>
                                 <TableCell>Type</TableCell>
                                 <TableCell>Date</TableCell>
                                 <TableCell align="center">Actions</TableCell>
@@ -105,8 +119,7 @@ const AttestationPage = () => {
                         <TableBody>
                             {attestations.map((a) => (
                                 <TableRow key={a.id} hover>
-                                    <TableCell>{a.id}</TableCell>
-                                    <TableCell>{a.employe?.nom} {a.employe?.prenom}</TableCell>
+                                    <TableCell>{getEmployeLabel(a.employeId)}</TableCell>
                                     <TableCell>{a.typeAttestation}</TableCell>
                                     <TableCell>{a.dateGeneration?.substring(0, 10)}</TableCell>
                                     <TableCell align="center">
@@ -128,6 +141,7 @@ const AttestationPage = () => {
                                                 color="error"
                                                 onClick={() => deleteAttestation(a.id)}
                                                 size="small"
+                                                data-testid="delete-button"
                                             >
                                                 <DeleteIcon />
                                             </IconButton>

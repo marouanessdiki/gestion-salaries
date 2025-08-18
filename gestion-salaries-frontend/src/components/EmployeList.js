@@ -10,6 +10,33 @@ const EmployeList = ({ employes, onEdit, onDelete }) => {
         api.delete(`/employes/${id}`).then(() => onDelete());
     };
 
+    // Safety check to ensure employes is an array
+    if (!Array.isArray(employes)) {
+        return (
+            <Card sx={{ maxWidth: 1100, margin: 'auto', mt: 4, boxShadow: 3 }}>
+                <CardContent>
+                    <Typography variant="h5" gutterBottom fontWeight={700} color="primary">Liste des employés</Typography>
+                    <Typography variant="body1" color="text.secondary" align="center" sx={{ py: 4 }}>
+                        {employes === null || employes === undefined ? 'Chargement...' : 'Aucun employé trouvé'}
+                    </Typography>
+                </CardContent>
+            </Card>
+        );
+    }
+
+    if (employes.length === 0) {
+        return (
+            <Card sx={{ maxWidth: 1100, margin: 'auto', mt: 4, boxShadow: 3 }}>
+                <CardContent>
+                    <Typography variant="h5" gutterBottom fontWeight={700} color="primary">Liste des employés</Typography>
+                    <Typography variant="body1" color="text.secondary" align="center" sx={{ py: 4 }}>
+                        Aucun employé trouvé
+                    </Typography>
+                </CardContent>
+            </Card>
+        );
+    }
+
     return (
         <Card sx={{ maxWidth: 1100, margin: 'auto', mt: 4, boxShadow: 3 }}>
             <CardContent>
