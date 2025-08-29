@@ -30,12 +30,11 @@ public class AttestationDaoImpl implements IAttestationDao {
 
     @Override
     public AttestationDto save(AttestationDto attestationDto) {
-        Optional<Employe> employe = employeRepository.findById(attestationDto.getEmployeeId());
+        Optional<Employe> employe = employeRepository.findById(attestationDto.getEmployeId());
         if (employe.isEmpty()) {
             throw new EmployeException("Employee n'existe pas");
         }
         Attestation attestation = attestationMapper.from(attestationDto);
-        attestation.setEmploye(employe.get());
         Attestation savedAttestation = attestationRepository.save(attestation);
         return attestationMapper.from(savedAttestation);
     }
@@ -48,5 +47,20 @@ public class AttestationDaoImpl implements IAttestationDao {
     @Override
     public AttestationDto findById(Long id) {
         return attestationMapper.from(attestationRepository.findById(id).orElse(null));
+    }
+
+    @Override
+    public void updateCheminFichier(Long id, String path) {
+        Optional<Attestation> attestationOpt = attestationRepository.findById(id);
+        if (attestationOpt.isPresent()) {
+            Attestation attestation = attestationOpt.get();
+            attestation.setCheminFichier(path);
+            attestationRepository.save(attestation);
+        }
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        attestationRepository.deleteById(id);
     }
 }

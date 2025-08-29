@@ -26,6 +26,6 @@ public class EmployeServiceImpl implements IEmployeService {
     }
 
     public EmployeDto findById(Long id) {
-        return employeDao.findById(id);
+        return employeDao.findById(id).orElse(null);
     }
 }

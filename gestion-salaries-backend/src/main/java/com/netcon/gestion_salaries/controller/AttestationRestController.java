@@ -27,10 +27,27 @@ public class AttestationRestController {
     private final AttestationCmdMapper attestationMapper;
 
     @PostMapping
-    public AttestationDto save(@RequestBody AttestationCmd attestationCmd) throws Exception {
-        AttestationDto attestationDto = attestationMapper.from(attestationCmd);
-        // Only generate and save once to avoid duplicates
-        return attestationService.generateAndSave(attestationDto);
+    public ResponseEntity<?> save(@RequestBody AttestationCmd attestationCmd) {
+        try {
+            // Validate required fields
+            if (attestationCmd.getEmployeId() == null) {
+                return ResponseEntity.badRequest()
+                        .body("Error: employeId is required");
+            }
+            if (attestationCmd.getTypeAttestation() == null || attestationCmd.getTypeAttestation().trim().isEmpty()) {
+                return ResponseEntity.badRequest()
+                        .body("Error: typeAttestation is required");
+            }
+
+            AttestationDto attestationDto = attestationMapper.from(attestationCmd);
+            // Only generate and save once to avoid duplicates
+            AttestationDto result = attestationService.generateAndSave(attestationDto);
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            e.printStackTrace(); // For debugging in logs
+            return ResponseEntity.status(500)
+                    .body("Error generating attestation: " + e.getMessage());
+        }
     }
 
     @GetMapping

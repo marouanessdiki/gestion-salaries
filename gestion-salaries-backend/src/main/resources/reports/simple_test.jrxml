@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports
+              http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="SimpleTest" pageWidth="595" pageHeight="842" columnWidth="555"
+              leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20"
+              uuid="test-uuid">
+    
+    <parameter name="typeAttestation" class="java.lang.String"/>
+    <parameter name="reference" class="java.lang.String"/>
+    <parameter name="currentDate" class="java.lang.String"/>
+    
+    <field name="nom" class="java.lang.String"/>
+    <field name="prenom" class="java.lang.String"/>
+    <field name="cin" class="java.lang.String"/>
+    <field name="poste" class="java.lang.String"/>
+    <field name="service" class="java.lang.String"/>
+    <field name="dateEmbauche" class="java.lang.String"/>
+    
+    <title>
+        <band height="100" splitType="Stretch">
+            <textField isBlankWhenNull="true">
+                <reportElement x="0" y="0" width="555" height="30" uuid="title"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="18" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA["ATTESTATION DE " + $P{typeAttestation}]]></textFieldExpression>
+            </textField>
+            
+            <textField isBlankWhenNull="true">
+                <reportElement x="0" y="40" width="555" height="20" uuid="reference"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Réf : " + $P{reference} + " — Date : " + $P{currentDate}]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+    
+    <detail>
+        <band height="200" splitType="Stretch">
+            <textField isBlankWhenNull="true">
+                <reportElement x="0" y="0" width="555" height="20" uuid="nom"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Nom : " + $F{nom}]]></textFieldExpression>
+            </textField>
+            
+            <textField isBlankWhenNull="true">
+                <reportElement x="0" y="25" width="555" height="20" uuid="prenom"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Prénom : " + $F{prenom}]]></textFieldExpression>
+            </textField>
+            
+            <textField isBlankWhenNull="true">
+                <reportElement x="0" y="50" width="555" height="20" uuid="cin"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA["CIN : " + $F{cin}]]></textFieldExpression>
+            </textField>
+            
+            <textField isBlankWhenNull="true">
+                <reportElement x="0" y="75" width="555" height="20" uuid="poste"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Poste : " + $F{poste}]]></textFieldExpression>
+            </textField>
+            
+            <textField isBlankWhenNull="true">
+                <reportElement x="0" y="100" width="555" height="20" uuid="service"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Service : " + $F{service}]]></textFieldExpression>
+            </textField>
+            
+            <textField isBlankWhenNull="true">
+                <reportElement x="0" y="125" width="555" height="20" uuid="date"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Date d'embauche : " + $F{dateEmbauche}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>

@@ -8,7 +8,7 @@ import org.mapstruct.NullValueMappingStrategy;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = {EmployeMapper.class}, nullValueMappingStrategy = NullValueMappingStrategy.RETURN_NULL, nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
+@Mapper(componentModel = "spring", nullValueMappingStrategy = NullValueMappingStrategy.RETURN_NULL, nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
 public interface AttestationMapper {
 
     Attestation from(AttestationDto dto);

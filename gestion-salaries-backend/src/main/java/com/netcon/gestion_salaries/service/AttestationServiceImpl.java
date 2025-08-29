@@ -1,24 +1,27 @@
 package com.netcon.gestion_salaries.service;
 
-import com.lowagie.text.*;
-import com.lowagie.text.pdf.*;
 import com.netcon.gestion_salaries.dao.inteface.IAttestationDao;
 import com.netcon.gestion_salaries.dao.inteface.IEmployeDao;
 import com.netcon.gestion_salaries.records.AttestationDto;
 import com.netcon.gestion_salaries.records.EmployeDto;
 import com.netcon.gestion_salaries.service.inteface.IAttestationService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.FileOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AttestationServiceImpl implements IAttestationService {
 
     private final IAttestationDao attestationDao;
@@ -49,20 +52,35 @@ public class AttestationServiceImpl implements IAttestationService {
     @Transactional
     public AttestationDto generateAndSave(AttestationDto attestation) throws Exception {
         EmployeDto employe = employeDao.findById(attestation.getEmployeId())
-                .orElseThrow(() -> new RuntimeException("Employee not found"));
+                .orElseThrow(() -> new RuntimeException("Employee not found with ID: " + attestation.getEmployeId()));
+        log.info("Found employee: {} {}", employe.getNom(), employe.getPrenom());
 
-        // Create and persist once to obtain ID
+        // Save attestation to get ID, but roll back if PDF fails
         AttestationDto saved = save(attestation);
+        log.info("Saved attestation with ID: {}", saved.getId());
 
-        // Generate the professional PDF
-        String filePath = generateProfessionalPdf(saved, employe, attestation.getTypeAttestation());
+        try {
+            // Ensure pdfs/ directory exists
+            String dir = "pdfs/";
+            java.nio.file.Files.createDirectories(java.nio.file.Paths.get(dir));
 
-        // Persist the file path without inserting a new record
-        attestationDao.updateCheminFichier(saved.getId(), filePath);
+            // Generate the professional PDF
+            String filePath = generateProfessionalPdf(saved, employe, attestation.getTypeAttestation());
+            log.info("Generated PDF at path: {}", filePath);
 
-        // Return DTO with updated path
-        saved.setCheminFichier(filePath);
-        return saved;
+            // Persist the file path
+            attestationDao.updateCheminFichier(saved.getId(), filePath);
+            log.info("Updated file path in database");
+
+            // Return DTO with updated path
+            saved.setCheminFichier(filePath);
+            return saved;
+        } catch (Exception e) {
+            log.error("Error in generateAndSave: {}", e.getMessage(), e);
+            // Roll back attestation if PDF generation fails
+            attestationDao.deleteById(saved.getId());
+            throw new Exception("Attestation generation failed: " + e.getMessage(), e);
+        }
     }
 
     @Override
@@ -70,248 +88,63 @@ public class AttestationServiceImpl implements IAttestationService {
         attestationDao.deleteById(id);
     }
 
-    private String generateProfessionalPdf(AttestationDto attestation, EmployeDto employe, String type) throws IOException, DocumentException {
+    private String generateProfessionalPdf(AttestationDto attestation, EmployeDto employe, String type) throws IOException, JRException {
         String dir = "pdfs/";
         java.nio.file.Files.createDirectories(java.nio.file.Paths.get(dir));
         String fileName = dir + "attestation_" + attestation.getId() + ".pdf";
 
-        Document document = new Document(PageSize.A4, 50, 50, 80, 50);
-        PdfWriter.getInstance(document, new FileOutputStream(fileName));
-        document.open();
+        log.info("Starting PDF generation for attestation ID: {}", attestation.getId());
 
-        // Add header
-        addHeader(document);
-        
-        // Add title
-        addTitle(document, type);
-        
-        // Add reference and date
-        addReference(document, attestation);
-        
-        // Add content
-        addContent(document, employe, type);
-        
-        // Add employee details table
-        addEmployeeDetailsTable(document, employe);
-        
-        // Add footer text
-        addFooterText(document);
-        
-        // Add signature section
-        addSignatureSection(document);
-        
-        // Add legal footer
-        addLegalFooter(document);
-
-        document.close();
-        return fileName;
-    }
-
-    private void addHeader(Document document) throws DocumentException {
-        // Company header with logo
-        PdfPTable headerTable = new PdfPTable(2);
-        headerTable.setWidthPercentage(100);
-        headerTable.setWidths(new float[]{20, 80});
-        
-        // Logo cell
-        PdfPCell logoCell = new PdfPCell();
-        logoCell.setBorder(Rectangle.NO_BORDER);
-        logoCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-        logoCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-        logoCell.setFixedHeight(60);
-        
         try {
-            // Try to load logo image
-            Image logo = Image.getInstance("images/logo.png");
-            logo.scaleToFit(50, 50);
-            logoCell.addElement(logo);
-        } catch (Exception e) {
-            // Fallback to text logo if image not found
-            Font logoFont = new Font(Font.HELVETICA, 10, Font.BOLD);
-            Paragraph logoText = new Paragraph("NETCON\nCONSULTING", logoFont);
-            logoText.setAlignment(Element.ALIGN_CENTER);
-            logoCell.addElement(logoText);
-        }
-        
-        // Company info cell
-        PdfPCell infoCell = new PdfPCell();
-        infoCell.setBorder(Rectangle.NO_BORDER);
-        infoCell.setPaddingLeft(20);
-        
-        Font companyFont = new Font(Font.HELVETICA, 16, Font.BOLD);
-        Font infoFont = new Font(Font.HELVETICA, 10, Font.NORMAL);
-        
-        Paragraph companyName = new Paragraph("NETCON CONSULTING", companyFont);
-        Paragraph companyInfo = new Paragraph("Siège Social : 05 RUE DIXMUDE, 1 ERE ETAGE APPT 2, CASABLANCA | netconconsulting.com", infoFont);
-        
-        infoCell.addElement(companyName);
-        infoCell.addElement(companyInfo);
-        
-        headerTable.addCell(logoCell);
-        headerTable.addCell(infoCell);
-        
-        document.add(headerTable);
-        
-        // Add separator line
-        Paragraph separator = new Paragraph("_".repeat(80));
-        separator.setAlignment(Element.ALIGN_CENTER);
-        separator.setSpacingAfter(20);
-        document.add(separator);
-    }
+            // Load the Jasper template
+            log.info("Loading Jasper template...");
+            ClassPathResource resource = new ClassPathResource("reports/attestation_template.jrxml");
+            if (!resource.exists()) {
+                throw new IOException("Template file not found: reports/attestation_template.jrxml");
+            }
+            JasperReport jasperReport = JasperCompileManager.compileReport(resource.getInputStream());
+            log.info("Template compiled successfully");
 
-    private void addTitle(Document document, String type) throws DocumentException {
-        String title = "Travail".equalsIgnoreCase(type) ? "ATTESTATION DE TRAVAIL" : "ATTESTATION DE SALAIRE";
-        Font titleFont = new Font(Font.HELVETICA, 18, Font.BOLD);
-        Paragraph titleParagraph = new Paragraph(title, titleFont);
-        titleParagraph.setAlignment(Element.ALIGN_CENTER);
-        titleParagraph.setSpacingAfter(10);
-        document.add(titleParagraph);
-    }
-
-    private void addReference(Document document, AttestationDto attestation) throws DocumentException {
-        String reference = "ATT-" + attestation.getId() + "-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
-        String currentDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        
-        Font refFont = new Font(Font.HELVETICA, 10, Font.NORMAL);
-        Paragraph refParagraph = new Paragraph("Réf : " + reference + " — Date : " + currentDate, refFont);
-        refParagraph.setAlignment(Element.ALIGN_CENTER);
-        refParagraph.setSpacingAfter(20);
-        document.add(refParagraph);
-    }
-
-    private void addContent(Document document, EmployeDto employe, String type) throws DocumentException {
-        Font contentFont = new Font(Font.HELVETICA, 12, Font.NORMAL);
-        
-        String content;
-        if ("Travail".equalsIgnoreCase(type)) {
-            content = String.format("Nous, soussignés NETCON CONSULTING, certifions que %s %s, titulaire de la CIN %s, est employé(e) en qualité de %s depuis le %s au sein du service %s.",
-                    employe.getNom(), employe.getPrenom(), employe.getCin(), employe.getPoste(), 
-                    employe.getDateEmbauche().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), employe.getService());
-        } else {
-            content = String.format("Nous certifions que %s %s perçoit un salaire mensuel brut en tant que %s depuis le %s.",
-                    employe.getNom(), employe.getPrenom(), employe.getPoste(), 
-                    employe.getDateEmbauche().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        }
-        
-        Paragraph contentParagraph = new Paragraph(content, contentFont);
-        contentParagraph.setAlignment(Element.ALIGN_JUSTIFIED);
-        contentParagraph.setSpacingAfter(20);
-        document.add(contentParagraph);
-    }
-
-    private void addEmployeeDetailsTable(Document document, EmployeDto employe) throws DocumentException {
-        PdfPTable table = new PdfPTable(2);
-        table.setWidthPercentage(100);
-        table.setWidths(new float[]{40, 60});
-        
-        Font headerFont = new Font(Font.HELVETICA, 11, Font.BOLD);
-        Font dataFont = new Font(Font.HELVETICA, 11, Font.NORMAL);
-        
-        // Add employee details
-        addTableRow(table, "Nom complet", employe.getNom() + " " + employe.getPrenom(), headerFont, dataFont);
-        addTableRow(table, "CIN", employe.getCin(), headerFont, dataFont);
-        addTableRow(table, "Poste", employe.getPoste(), headerFont, dataFont);
-        addTableRow(table, "Service", employe.getService(), headerFont, dataFont);
-        addTableRow(table, "Date d'embauche", employe.getDateEmbauche().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), headerFont, dataFont);
-        
-        table.setSpacingAfter(20);
-        document.add(table);
-    }
-
-    private void addTableRow(PdfPTable table, String label, String value, Font headerFont, Font dataFont) {
-        PdfPCell labelCell = new PdfPCell(new Paragraph(label, headerFont));
-        labelCell.setPadding(8);
-        labelCell.setBorder(Rectangle.BOX);
-        
-        PdfPCell valueCell = new PdfPCell(new Paragraph(value, dataFont));
-        valueCell.setPadding(8);
-        valueCell.setBorder(Rectangle.BOX);
-        
-        table.addCell(labelCell);
-        table.addCell(valueCell);
-    }
-
-    private void addFooterText(Document document) throws DocumentException {
-        Font footerFont = new Font(Font.HELVETICA, 12, Font.NORMAL);
-        Paragraph footerParagraph = new Paragraph("La présente attestation est délivrée à l'intéressé(e) pour servir et valoir ce que de droit.", footerFont);
-        footerParagraph.setAlignment(Element.ALIGN_JUSTIFIED);
-        footerParagraph.setSpacingAfter(30);
-        document.add(footerParagraph);
-    }
-
-    private void addSignatureSection(Document document) throws DocumentException {
-        PdfPTable signatureTable = new PdfPTable(2);
-        signatureTable.setWidthPercentage(100);
-        signatureTable.setWidths(new float[]{50, 50});
-        
-        // Signature box
-        PdfPCell signatureCell = new PdfPCell();
-        signatureCell.setBorder(Rectangle.BOX);
-        signatureCell.setPadding(15);
-        signatureCell.setFixedHeight(120);
-        
-        Font signatureFont = new Font(Font.HELVETICA, 10, Font.NORMAL);
-        Paragraph signatureText = new Paragraph();
-        signatureText.add(new Chunk("Fait à Casablanca, le " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), signatureFont));
-        signatureText.add(new Chunk("\n\nLe/La Responsable\n\n", signatureFont));
-        
-        Font companyFont = new Font(Font.HELVETICA, 11, Font.BOLD);
-        signatureText.add(new Chunk("NETCON CONSULTING\n", companyFont));
-        signatureText.add(new Chunk("Direction Générale", signatureFont));
-        
-        signatureCell.addElement(signatureText);
-        
-        // Stamp box with cachet image
-        PdfPCell stampCell = new PdfPCell();
-        stampCell.setBorder(Rectangle.BOX);
-        stampCell.setPadding(15);
-        stampCell.setFixedHeight(120);
-        stampCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-        stampCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-        
-        try {
-            // Try to load cachet image
-            Image cachet = Image.getInstance("images/cachet.png");
-            cachet.scaleToFit(80, 80);
-            cachet.setAlignment(Element.ALIGN_CENTER);
-            stampCell.addElement(cachet);
+            // Prepare parameters
+            log.info("Preparing parameters...");
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("typeAttestation", type);
+            parameters.put("reference", "ATT-" + attestation.getId() + "-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")));
+            parameters.put("currentDate", LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             
-            // Add text below the image
-            Font stampFont = new Font(Font.HELVETICA, 8, Font.NORMAL);
-            Paragraph stampText = new Paragraph("Cachet de l'entreprise", stampFont);
-            stampText.setAlignment(Element.ALIGN_CENTER);
-            stampCell.addElement(stampText);
-        } catch (Exception e) {
-            // Fallback to text stamp if image not found
-            Font stampFont = new Font(Font.HELVETICA, 10, Font.BOLD);
-            Paragraph stampText = new Paragraph("Cachet de l'entreprise\n\nNETCON\nCONSULTING", stampFont);
-            stampText.setAlignment(Element.ALIGN_CENTER);
-            stampCell.addElement(stampText);
-        }
-        
-        signatureTable.addCell(signatureCell);
-        signatureTable.addCell(stampCell);
-        
-        signatureTable.setSpacingAfter(50);
-        document.add(signatureTable);
-    }
+            // Skip images for simple test
+            log.info("Skipping images for simple test");
 
-    private void addLegalFooter(Document document) throws DocumentException {
-        Font legalFont = new Font(Font.HELVETICA, 9, Font.NORMAL);
-        
-        PdfPTable legalTable = new PdfPTable(5);
-        legalTable.setWidthPercentage(100);
-        legalTable.setWidths(new float[]{20, 20, 20, 20, 20});
-        
-        String[] legalInfo = {"RC : 530199", "CNSS : 4021653", "IF : 51699164", "PTE : 34263449", "ICE : 002996175000014"};
-        
-        for (String info : legalInfo) {
-            PdfPCell cell = new PdfPCell(new Paragraph(info, legalFont));
-            cell.setBorder(Rectangle.NO_BORDER);
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            legalTable.addCell(cell);
+            // Prepare data source
+            log.info("Preparing employee data...");
+            Map<String, Object> employeeData = new HashMap<>();
+            employeeData.put("nom", employe.getNom() != null ? employe.getNom() : "");
+            employeeData.put("prenom", employe.getPrenom() != null ? employe.getPrenom() : "");
+            employeeData.put("cin", employe.getCin() != null ? employe.getCin() : "");
+            employeeData.put("poste", employe.getPoste() != null ? employe.getPoste() : "");
+            employeeData.put("service", employe.getService() != null ? employe.getService() : "");
+            employeeData.put("dateEmbauche", employe.getDateEmbauche() != null ? 
+                employe.getDateEmbauche().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : "");
+
+            List<Map<String, Object>> dataList = Arrays.asList(employeeData);
+            JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(dataList);
+            log.info("Data source prepared with {} records", dataList.size());
+
+            // Fill the report
+            log.info("Filling report...");
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+            log.info("Report filled successfully");
+
+            // Export to PDF
+            log.info("Exporting to PDF file: {}", fileName);
+            JasperExportManager.exportReportToPdfFile(jasperPrint, fileName);
+
+            log.info("PDF generated successfully: {}", fileName);
+            return fileName;
+
+        } catch (Exception e) {
+            log.error("Error generating PDF: {}", e.getMessage(), e);
+            throw new JRException("Failed to generate PDF: " + e.getMessage(), e);
         }
-        
-        document.add(legalTable);
     }
 }
