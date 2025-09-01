@@ -34,9 +34,9 @@ public class AttestationDaoImpl implements IAttestationDao {
         if (employe.isEmpty()) {
             throw new EmployeException("Employee n'existe pas");
         }
-        Attestation attestation = attestationMapper.from(attestationDto);
+        Attestation attestation = attestationMapper.fromDto(attestationDto);
         Attestation savedAttestation = attestationRepository.save(attestation);
-        return attestationMapper.from(savedAttestation);
+        return attestationMapper.fromEntity(savedAttestation);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class AttestationDaoImpl implements IAttestationDao {
 
     @Override
     public AttestationDto findById(Long id) {
-        return attestationMapper.from(attestationRepository.findById(id).orElse(null));
+        return attestationMapper.fromEntity(attestationRepository.findById(id).orElse(null));
     }
 
     @Override
