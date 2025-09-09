@@ -16,25 +16,25 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class EmployeeDaoImpl implements IEmployeDao {
-    
+
     private final EmployeRepository employeRepository;
     private final EmployeMapper employeMapper;
-    
+
     @Override
     public List<EmployeDto> findAll() {
         List<Employe> employes = employeRepository.findAll();
         return employes.stream()
-                .map(employeMapper::from)
+                .map(employeMapper::fromEntity)
                 .collect(Collectors.toList());
     }
-    
+
     @Override
     public EmployeDto save(EmployeDto dto) {
-        Employe employe = employeMapper.from(dto);
+        Employe employe = employeMapper.fromDto(dto);
         Employe savedEmploye = employeRepository.save(employe);
-        return employeMapper.from(savedEmploye);
+        return employeMapper.fromEntity(savedEmploye);
     }
-    
+
     @Override
     public void deleteById(Long id) {
         if (!employeRepository.existsById(id)) {
@@ -42,10 +42,10 @@ public class EmployeeDaoImpl implements IEmployeDao {
         }
         employeRepository.deleteById(id);
     }
-    
+
     @Override
     public Optional<EmployeDto> findById(Long id) {
         Optional<Employe> employe = employeRepository.findById(id);
-        return employe.map(employeMapper::from);
+        return employe.map(employeMapper::fromEntity);
     }
 }
