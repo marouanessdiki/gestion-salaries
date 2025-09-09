@@ -57,4 +57,56 @@ public class HrController {
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    @GetMapping("/profile")
+    public ResponseEntity<?> getProfile() {
+        // For demo, get the first HR user or create default data
+        Hr hr = hrRepository.findAll().stream().findFirst().orElse(null);
+        
+        Map<String, Object> profile;
+        if (hr != null) {
+            profile = Map.of(
+                "fullName", hr.getFullName() != null ? hr.getFullName() : "Manager RH",
+                "email", hr.getEmail() != null ? hr.getEmail() : "hr@netcon.ma",
+                "phone", hr.getPhone() != null ? hr.getPhone() : "+212 6 12 34 56 78",
+                "department", hr.getDepartment(),
+                "position", hr.getPosition(),
+                "darkTheme", hr.getDarkTheme() != null ? hr.getDarkTheme() : false
+            );
+        } else {
+            profile = Map.of(
+                "fullName", "Manager RH",
+                "email", "hr@netcon.ma",
+                "phone", "+212 6 12 34 56 78",
+                "department", "Ressources Humaines",
+                "position", "Responsable RH",
+                "darkTheme", false
+            );
+        }
+        return ResponseEntity.ok(profile);
+    }
+
+    @PostMapping("/profile")
+    public ResponseEntity<?> updateProfile(@RequestBody Map<String, Object> profileData) {
+        try {
+            // For demo, update the first HR user
+            Hr hr = hrRepository.findAll().stream().findFirst().orElse(null);
+            
+            if (hr != null) {
+                hr.setFullName((String) profileData.get("fullName"));
+                hr.setEmail((String) profileData.get("email"));
+                hr.setPhone((String) profileData.get("phone"));
+                hr.setPosition((String) profileData.get("position"));
+                hr.setDepartment((String) profileData.get("department"));
+                hr.setDarkTheme((Boolean) profileData.get("darkTheme"));
+                
+                hrRepository.save(hr);
+            }
+            
+            return ResponseEntity.ok(Map.of("success", true, "message", "Profil mis à jour avec succès"));
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(Map.of("success", false, "message", "Erreur lors de la mise à jour"));
+        }
+    }
+    
 } 

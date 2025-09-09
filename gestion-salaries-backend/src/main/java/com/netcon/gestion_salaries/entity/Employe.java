@@ -24,4 +24,8 @@ public class Employe {
     private String service;
 
     private LocalDate dateEmbauche;
+
+    private String cnssNumero; // CNSS N°
+    private Double salaire; // Salaire
+    private String compteBancaireNumero; // compte bancaire n°
 }

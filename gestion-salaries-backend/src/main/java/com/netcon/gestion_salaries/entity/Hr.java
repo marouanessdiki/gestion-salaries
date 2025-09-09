@@ -22,4 +22,22 @@ public class Hr {
 
     @Column(name = "is_approved")
     private boolean isApproved = false;
+    
+    @Column(name = "full_name")
+    private String fullName;
+    
+    @Column(name = "email")
+    private String email;
+    
+    @Column(name = "phone")
+    private String phone;
+    
+    @Column(name = "position")
+    private String position = "Responsable RH";
+    
+    @Column(name = "department")
+    private String department = "Ressources Humaines";
+    
+    @Column(name = "dark_theme")
+    private Boolean darkTheme = false;
 } 

@@ -23,4 +23,8 @@ public class EmployeDto {
     private String service;
 
     private LocalDate dateEmbauche;
+
+    private String cnssNumero;
+    private Double salaire;
+    private String compteBancaireNumero;
 }
