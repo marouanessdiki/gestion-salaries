@@ -10,6 +10,9 @@ const EmployeForm = ({ selected, onSaved, onCancel }) => {
         poste: '',
         service: '',
         dateEmbauche: '',
+        cnssNumero: '',
+        salaire: '',
+        compteBancaireNumero: '',
     });
     const [errors, setErrors] = useState({});
 
@@ -19,6 +22,7 @@ const EmployeForm = ({ selected, onSaved, onCancel }) => {
         } else {
             setEmploye({
                 nom: '', prenom: '', cin: '', poste: '', service: '', dateEmbauche: '',
+                cnssNumero: '', salaire: '', compteBancaireNumero: '',
             });
         }
     }, [selected]);
@@ -35,6 +39,9 @@ const EmployeForm = ({ selected, onSaved, onCancel }) => {
         temp.poste = employe.poste ? '' : 'Poste requis';
         temp.service = employe.service ? '' : 'Service requis';
         temp.dateEmbauche = employe.dateEmbauche ? '' : 'Date requise';
+        temp.cnssNumero = employe.cnssNumero ? '' : 'CNSS N° requis';
+        temp.salaire = employe.salaire ? '' : 'Salaire requis';
+        temp.compteBancaireNumero = employe.compteBancaireNumero ? '' : 'Compte bancaire n° requis';
         setErrors(temp);
         return Object.values(temp).every(x => x === '');
     };
@@ -51,7 +58,7 @@ const EmployeForm = ({ selected, onSaved, onCancel }) => {
 
     return (
         <Card sx={{ maxWidth: 600, margin: 'auto', mt: 4, boxShadow: 3, position: 'fixed', left: 0, right: 0, top: 80, zIndex: 10 }}>
-            <CardContent>
+            <CardContent sx={{ maxHeight: '70vh', overflowY: 'auto' }}>
                 <Typography variant="h6" color="primary" fontWeight={700} gutterBottom>{employe.id ? 'Modifier' : 'Ajouter'} Employé</Typography>
                 <form onSubmit={handleSubmit} noValidate>
                     <Stack spacing={2}>
@@ -61,6 +68,9 @@ const EmployeForm = ({ selected, onSaved, onCancel }) => {
                         <TextField label="Poste" name="poste" value={employe.poste} onChange={handleChange} error={!!errors.poste} helperText={errors.poste} fullWidth />
                         <TextField label="Service" name="service" value={employe.service} onChange={handleChange} error={!!errors.service} helperText={errors.service} fullWidth />
                         <TextField label="Date d'embauche" name="dateEmbauche" type="date" value={employe.dateEmbauche} onChange={handleChange} error={!!errors.dateEmbauche} helperText={errors.dateEmbauche} InputLabelProps={{ shrink: true }} fullWidth />
+                        <TextField label="CNSS N°" name="cnssNumero" value={employe.cnssNumero} onChange={handleChange} error={!!errors.cnssNumero} helperText={errors.cnssNumero} fullWidth />
+                        <TextField label="Salaire" name="salaire" type="number" value={employe.salaire} onChange={handleChange} error={!!errors.salaire} helperText={errors.salaire} fullWidth />
+                        <TextField label="Compte bancaire n°" name="compteBancaireNumero" value={employe.compteBancaireNumero} onChange={handleChange} error={!!errors.compteBancaireNumero} helperText={errors.compteBancaireNumero} fullWidth />
                         <Stack direction="row" spacing={2} justifyContent="flex-end">
                             <Button onClick={onCancel} color="secondary" variant="outlined">Annuler</Button>
                             <Button type="submit" variant="contained" color="primary" size="large">Enregistrer</Button>

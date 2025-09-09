@@ -4,8 +4,7 @@ import EmployeList from "./components/EmployeList";
 import EmployeForm from "./components/EmployeForm";
 import AttestationPage from "./components/AttestationPage";
 import Menu from "./components/Menu";
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeContextProvider } from './contexts/ThemeContext';
 import api from './services/api';
 import { Fab, Container } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
@@ -13,38 +12,29 @@ import AuthLogin from './components/AuthLogin';
 import HrSignup from './components/HrSignup';
 import AdminPanel from './components/AdminPanel';
 import EmployeProfile from './components/EmployeProfile';
+import HrProfile from './components/HrProfile';
 
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: '#1976d2',
-        },
-        secondary: {
-            main: '#f50057',
-        },
-        background: {
-            default: '#f4f6fa',
-        },
-    },
-    shape: {
-        borderRadius: 12,
-    },
-    typography: {
-        fontFamily: 'Roboto, Segoe UI, Arial, sans-serif',
-    },
-});
 
 function App() {
     const [employes, setEmployes] = useState([]);
     const [showForm, setShowForm] = useState(false);
     const [selected, setSelected] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn') === 'true');
+    const [userRole, setUserRole] = useState(localStorage.getItem('role'));
     const [error, setError] = useState(null);
+
+    const handleLogin = (role) => {
+        setIsLoggedIn(true);
+        setUserRole(role);
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('role', role);
+    };
 
     const handleLogout = () => {
         localStorage.removeItem('isLoggedIn');
         localStorage.removeItem('role');
         setIsLoggedIn(false);
+        setUserRole(null);
     };
 
     const fetchEmployes = () => {
@@ -107,18 +97,21 @@ function App() {
     }
 
     return (
-        <ThemeProvider theme={theme}>
-            <CssBaseline />
+        <ThemeContextProvider>
             <BrowserRouter>
                 <Routes>
                     <Route path="/signup" element={<HrSignup />} />
-                    <Route path="/admin" element={<AdminPanel />} />
                     <Route path="/" element={
                         !isLoggedIn ? (
-                            <AuthLogin onLogin={() => setIsLoggedIn(true)} />
+                            <AuthLogin onLogin={handleLogin} />
+                        ) : userRole === 'ADMIN' ? (
+                            <>
+                                <Menu onLogout={handleLogout} userRole={userRole} />
+                                <AdminPanel />
+                            </>
                         ) : (
                             <>
-                                <Menu onLogout={handleLogout} />
+                                <Menu onLogout={handleLogout} userRole={userRole} />
                                 <Container>
                                     <EmployeList employes={employes} onEdit={handleEdit} onDelete={fetchEmployes} />
                                     <Fab color="primary" aria-label="add" onClick={handleAdd} sx={{ position: 'fixed', bottom: 32, right: 32 }}>
@@ -131,27 +124,39 @@ function App() {
                     } />
                     <Route path="/attestations" element={
                         !isLoggedIn ? (
-                            <AuthLogin onLogin={() => setIsLoggedIn(true)} />
+                            <AuthLogin onLogin={handleLogin} />
                         ) : (
                             <>
-                                <Menu onLogout={handleLogout} />
+                                <Menu onLogout={handleLogout} userRole={userRole} />
                                 <AttestationPage />
                             </>
                         )
                     } />
+                    <Route path="/profile" element={
+                        !isLoggedIn ? (
+                            <AuthLogin onLogin={handleLogin} />
+                        ) : userRole === 'HR' ? (
+                            <>
+                                <Menu onLogout={handleLogout} userRole={userRole} />
+                                <HrProfile />
+                            </>
+                        ) : (
+                            <AuthLogin onLogin={handleLogin} />
+                        )
+                    } />
                     <Route path="/employes/:id" element={
                         !isLoggedIn ? (
-                            <AuthLogin onLogin={() => setIsLoggedIn(true)} />
+                            <AuthLogin onLogin={handleLogin} />
                         ) : (
                             <>
-                                <Menu onLogout={handleLogout} />
+                                <Menu onLogout={handleLogout} userRole={userRole} />
                                 <EmployeProfile />
                             </>
                         )
                     } />
                 </Routes>
             </BrowserRouter>
-        </ThemeProvider>
+        </ThemeContextProvider>
     );
 }
 
