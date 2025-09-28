@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../services/api';
-import { Card, CardContent, Typography, TextField, Button, Stack } from '@mui/material';
+import { Card, CardContent, Typography, TextField, Button, Stack, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
 const EmployeForm = ({ selected, onSaved, onCancel }) => {
     const [employe, setEmploye] = useState({
@@ -13,6 +13,7 @@ const EmployeForm = ({ selected, onSaved, onCancel }) => {
         cnssNumero: '',
         salaire: '',
         compteBancaireNumero: '',
+        sexe: '',
     });
     const [errors, setErrors] = useState({});
 
@@ -22,7 +23,7 @@ const EmployeForm = ({ selected, onSaved, onCancel }) => {
         } else {
             setEmploye({
                 nom: '', prenom: '', cin: '', poste: '', service: '', dateEmbauche: '',
-                cnssNumero: '', salaire: '', compteBancaireNumero: '',
+                cnssNumero: '', salaire: '', compteBancaireNumero: '', sexe: '',
             });
         }
     }, [selected]);
@@ -42,6 +43,7 @@ const EmployeForm = ({ selected, onSaved, onCancel }) => {
         temp.cnssNumero = employe.cnssNumero ? '' : 'CNSS N° requis';
         temp.salaire = employe.salaire ? '' : 'Salaire requis';
         temp.compteBancaireNumero = employe.compteBancaireNumero ? '' : 'Compte bancaire n° requis';
+        temp.sexe = employe.sexe ? '' : 'Sexe requis';
         setErrors(temp);
         return Object.values(temp).every(x => x === '');
     };
@@ -68,6 +70,14 @@ const EmployeForm = ({ selected, onSaved, onCancel }) => {
                         <TextField label="Poste" name="poste" value={employe.poste} onChange={handleChange} error={!!errors.poste} helperText={errors.poste} fullWidth />
                         <TextField label="Service" name="service" value={employe.service} onChange={handleChange} error={!!errors.service} helperText={errors.service} fullWidth />
                         <TextField label="Date d'embauche" name="dateEmbauche" type="date" value={employe.dateEmbauche} onChange={handleChange} error={!!errors.dateEmbauche} helperText={errors.dateEmbauche} InputLabelProps={{ shrink: true }} fullWidth />
+                        <FormControl fullWidth error={!!errors.sexe}>
+                            <InputLabel>Sexe</InputLabel>
+                            <Select name="sexe" value={employe.sexe} onChange={handleChange} label="Sexe">
+                                <MenuItem value="M">Masculin</MenuItem>
+                                <MenuItem value="F">Féminin</MenuItem>
+                            </Select>
+                            {errors.sexe && <Typography variant="caption" color="error" sx={{ mt: 0.5, ml: 1.75 }}>{errors.sexe}</Typography>}
+                        </FormControl>
                         <TextField label="CNSS N°" name="cnssNumero" value={employe.cnssNumero} onChange={handleChange} error={!!errors.cnssNumero} helperText={errors.cnssNumero} fullWidth />
                         <TextField label="Salaire" name="salaire" type="number" value={employe.salaire} onChange={handleChange} error={!!errors.salaire} helperText={errors.salaire} fullWidth />
                         <TextField label="Compte bancaire n°" name="compteBancaireNumero" value={employe.compteBancaireNumero} onChange={handleChange} error={!!errors.compteBancaireNumero} helperText={errors.compteBancaireNumero} fullWidth />

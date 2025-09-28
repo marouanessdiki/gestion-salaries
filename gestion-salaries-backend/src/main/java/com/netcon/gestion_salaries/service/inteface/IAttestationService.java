@@ -17,5 +17,7 @@ public interface IAttestationService {
     
     AttestationDto generateAndSave(AttestationDto attestation) throws Exception ;
     
+    byte[] generateAttestation(String typeName, Long employeId, java.util.Map<String, Object> params);
+    
     void deleteById(Long id);
 }

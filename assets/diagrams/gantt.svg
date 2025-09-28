@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="600" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .phase-bar { fill-opacity: 0.8; stroke: #333; stroke-width: 1; }
+    .phase-text { font-family: Arial, sans-serif; font-size: 12px; fill: #333; }
+    .title { font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; fill: #333; }
+    .grid-line { stroke: #ddd; stroke-width: 0.5; }
+    .milestone { fill: #ff4757; stroke: #333; stroke-width: 1; }
+  </style>
+  
+  <!-- Title -->
+  <text x="600" y="30" class="title" text-anchor="middle">
+    Gestion Salaries - Employee Management System - Gantt Chart
+  </text>
+  
+  <!-- Grid lines -->
+  <line x1="50.0" y1="50" x2="50.0" y2="550" class="grid-line"/>
+  <text x="50.0" y="40" class="phase-text" text-anchor="middle">
+    Jul 2024
+  </text>
+  <line x1="639.2857142857142" y1="50" x2="639.2857142857142" y2="550" class="grid-line"/>
+  <text x="639.2857142857142" y="40" class="phase-text" text-anchor="middle">
+    Jul 2024
+  </text>
+  <!-- Analysis & Design -->
+  <rect x="50.0" y="90" width="196.42857142857144" height="30" 
+        fill="#FF6B6B" class="phase-bar"/>
+  <text x="40" y="109" class="phase-text" text-anchor="end">
+    Analysis & Design
+  </text>
+  <text x="148.0" y="109" class="phase-text" 
+        text-anchor="middle" fill="white">
+    1.5w
+  </text>
+  <!-- Backend Development -->
+  <rect x="246.42857142857144" y="140" width="412.5" height="30" 
+        fill="#4ECDC4" class="phase-bar"/>
+  <text x="40" y="159" class="phase-text" text-anchor="end">
+    Backend Development
+  </text>
+  <text x="452.42857142857144" y="159" class="phase-text" 
+        text-anchor="middle" fill="white">
+    3.0w
+  </text>
+  <!-- Frontend Development -->
+  <rect x="658.9285714285714" y="190" width="333.9285714285714" height="30" 
+        fill="#45B7D1" class="phase-bar"/>
+  <text x="40" y="209" class="phase-text" text-anchor="end">
+    Frontend Development
+  </text>
+  <text x="824.9285714285714" y="209" class="phase-text" 
+        text-anchor="middle" fill="white">
+    2.5w
+  </text>
+  <!-- Testing & Integration -->
+  <rect x="1012.5" y="240" width="58.92857142857142" height="30" 
+        fill="#96CEB4" class="phase-bar"/>
+  <text x="40" y="259" class="phase-text" text-anchor="end">
+    Testing & Integration
+  </text>
+  <text x="1041.5" y="259" class="phase-text" 
+        text-anchor="middle" fill="white">
+    0.5w
+  </text>
+  <!-- Deployment & Documentation -->
+  <rect x="1071.4285714285716" y="290" width="58.92857142857142" height="30" 
+        fill="#FFEAA7" class="phase-bar"/>
+  <text x="40" y="309" class="phase-text" text-anchor="end">
+    Deployment & Documentation
+  </text>
+  <text x="1100.4285714285716" y="309" class="phase-text" 
+        text-anchor="middle" fill="white">
+    0.5w
+  </text>
+  <!-- Milestone: Requirements Complete -->
+  <polygon points="226.7857142857143,70 234.7857142857143,85 226.7857142857143,100 218.7857142857143,85" 
+           class="milestone"/>
+  <text x="226.7857142857143" y="65" class="phase-text" text-anchor="middle" font-size="10">
+    Requirements Complete
+  </text>
+  <!-- Milestone: Backend API Ready -->
+  <polygon points="678.5714285714286,70 686.5714285714286,85 678.5714285714286,100 670.5714285714286,85" 
+           class="milestone"/>
+  <text x="678.5714285714286" y="65" class="phase-text" text-anchor="middle" font-size="10">
+    Backend API Ready
+  </text>
+  <!-- Milestone: Frontend Complete -->
+  <polygon points="1091.0714285714284,70 1099.0714285714284,85 1091.0714285714284,100 1083.0714285714284,85" 
+           class="milestone"/>
+  <text x="1091.0714285714284" y="65" class="phase-text" text-anchor="middle" font-size="10">
+    Frontend Complete
+  </text>
+  <!-- Milestone: Production Ready -->
+  <polygon points="1228.5714285714284,70 1236.5714285714284,85 1228.5714285714284,100 1220.5714285714284,85" 
+           class="milestone"/>
+  <text x="1228.5714285714284" y="65" class="phase-text" text-anchor="middle" font-size="10">
+    Production Ready
+  </text>
+</svg>

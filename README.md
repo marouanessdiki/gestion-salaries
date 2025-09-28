@@ -70,8 +70,31 @@ server.port=8080
 gestion-salaries/
 ├── gestion-salaries-backend/     # Spring Boot API
 ├── gestion-salaries-frontend/    # React UI
+├── docs/                         # Documentation
+│   ├── conception/               # Design & Architecture docs
+│   ├── gantt/                    # Project timeline charts
+│   └── uml/                      # UML diagrams
+├── assets/                       # Static assets
+│   ├── diagrams/                 # Generated diagrams
+│   └── tools/                    # Technology logos
+├── scripts/                      # Utility scripts
 └── README.md
 ```
+
+## 📚 Documentation
+
+### Conception & Diagrams
+- **[System Architecture](docs/conception/index.md)** - Complete design documentation
+- **[Visual Diagrams](docs/conception/diagrams.md)** - Gantt charts, UML, and architecture diagrams
+- **[Waterfall Methodology](docs/conception/waterfall.md)** - Development process documentation
+- **[Tools & Technologies](docs/conception/tools.md)** - Technology stack overview
+
+### Interactive Charts
+- **[Gantt Chart](docs/gantt/index.html)** - Project timeline visualization
+- **[UML Diagrams](docs/uml/README.md)** - System design diagrams
+
+### Technical Reports
+- **[LaTeX Report](RapportGestionSalaires/rapportGestionSalaires.pdf)** - Complete technical report
 
 ## 🐛 Troubleshooting
 

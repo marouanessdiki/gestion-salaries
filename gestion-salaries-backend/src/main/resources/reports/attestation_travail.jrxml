@@ -1,7 +1,7 @@
 <!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
 <jasperReport name="attestation_travail" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a6dc72e1-8d6f-4f6d-8e7a-8d5c8f8e8d7f">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
-	<query language="sql"><![CDATA[SELECT prenom, nom, cin, cnss_numero, poste, date_embauche, salaire
+	<query language="sql"><![CDATA[SELECT prenom, nom, cin, cnss_numero, poste, date_embauche, salaire, sexe
 FROM employe
 WHERE id = $P{employeId}]]></query>
 	
@@ -17,6 +17,7 @@ WHERE id = $P{employeId}]]></query>
 	<field name="poste" class="java.lang.String"/>
 	<field name="date_embauche" class="java.lang.String"/>
 	<field name="salaire" class="java.lang.String"/>
+	<field name="sexe" class="java.lang.String"/>
 	
 	<background splitType="Stretch"/>
 	<title height="190" splitType="Stretch">
@@ -37,7 +38,7 @@ WHERE id = $P{employeId}]]></query>
 		<band height="160" splitType="Stretch">
 			<element kind="textField" uuid="e3456789-abcd-ef01-2345-6789abcdef01" x="30" y="-30" width="495" height="190" fontSize="13.0" hTextAlign="Justified" markup="html">
 				<expression><![CDATA["&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Je soussigné, Monsieur <b>Said FETTOUH</b>, CIN N° <b>TK17572</b>, agissant en qualité de directeur général de la Société <b>NETCON SERVICES</b> dont le siège social se trouve à <b>12 RUE SARIA BEN ZOUNAIM ETG 3 APPT 3 PALMIER CASABLANCA</b>, immatriculée au Tribunal de Commerce de Casablanca et identifiée sous le numéro <b>612487</b>.<br/><br/>" +
-"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Attestons par la présente que Monsieur <b>" + ($F{prenom} != null ? $F{prenom}.toUpperCase() : "") + " " + ($F{nom} != null ? $F{nom}.toUpperCase() : "") + "</b>, de nationalité <b>marocaine</b>, titulaire de la carte d'identité nationale N° <b>" + ($F{cin} != null ? $F{cin} : "") + "</b> et de la carte d'immatriculation CNSS N° <b>" + ($F{cnss_numero} != null ? $F{cnss_numero} : "") + "</b>, fait partie de notre personnel depuis <b>" + ($F{date_embauche} != null ? $F{date_embauche} : "") + "</b>."]]></expression>
+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Attestons par la présente que " + ($F{sexe} != null && $F{sexe}.equals("F") ? "Madame" : "Monsieur") + " <b>" + ($F{prenom} != null ? $F{prenom}.toUpperCase() : "") + " " + ($F{nom} != null ? $F{nom}.toUpperCase() : "") + "</b>, de nationalité <b>marocaine</b>, titulaire de la carte d'identité nationale N° <b>" + ($F{cin} != null ? $F{cin} : "") + "</b> et de la carte d'immatriculation CNSS N° <b>" + ($F{cnss_numero} != null ? $F{cnss_numero} : "") + "</b>, fait partie de notre personnel depuis <b>" + ($F{date_embauche} != null ? $F{date_embauche} : "") + "</b>."]]></expression>
 			</element>
 		</band>
 	</detail>

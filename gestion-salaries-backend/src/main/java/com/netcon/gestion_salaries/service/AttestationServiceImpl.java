@@ -2,9 +2,11 @@ package com.netcon.gestion_salaries.service;
 
 import com.netcon.gestion_salaries.dao.inteface.IAttestationDao;
 import com.netcon.gestion_salaries.dao.inteface.IEmployeDao;
+import com.netcon.gestion_salaries.entity.AttestationTemplate;
 import com.netcon.gestion_salaries.records.AttestationDto;
 import com.netcon.gestion_salaries.records.EmployeDto;
 import com.netcon.gestion_salaries.service.inteface.IAttestationService;
+import com.netcon.gestion_salaries.service.inteface.IAttestationTemplateService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.jasperreports.engine.*;
@@ -14,8 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -28,6 +32,7 @@ public class AttestationServiceImpl implements IAttestationService {
     private final IAttestationDao attestationDao;
     private final IEmployeDao employeDao;
     private final DataSource dataSource;
+    private final IAttestationTemplateService attestationTemplateService;
 
     @Override
     public List<AttestationDto> findByEmploye(Long employeId) {
@@ -89,6 +94,87 @@ public class AttestationServiceImpl implements IAttestationService {
     public void deleteById(Long id) {
         attestationDao.deleteById(id);
     }
+    
+    @Override
+    public byte[] generateAttestation(String typeName, Long employeId, Map<String, Object> params) {
+        log.info("Generating attestation: type={}, employeId={}", typeName, employeId);
+        
+        try {
+            AttestationTemplate template = attestationTemplateService.findByName(typeName);
+            
+            try (ByteArrayInputStream inputStream = new ByteArrayInputStream(
+                    template.getJrxml().getBytes(StandardCharsets.UTF_8))) {
+                
+                JasperReport report = JasperCompileManager.compileReport(inputStream);
+                log.debug("Template compiled successfully: {}", typeName);
+                
+                // Get database connection for SQL-based templates
+                try (java.sql.Connection connection = dataSource.getConnection()) {
+                    // Add employee ID to parameters if not present
+                    if (!params.containsKey("employeId")) {
+                        params.put("employeId", employeId);
+                    }
+                    
+                    JasperPrint jasperPrint = JasperFillManager.fillReport(report, params, connection);
+                    byte[] pdfBytes = JasperExportManager.exportReportToPdf(jasperPrint);
+                    
+                    log.info("Attestation generated successfully: type={}, size={} bytes", typeName, pdfBytes.length);
+                    return pdfBytes;
+                }
+            }
+        } catch (RuntimeException e) {
+            if (e.getMessage().contains("Unknown attestation type")) {
+                log.warn("Template {} not found in database, falling back to legacy file system", typeName);
+                return generateAttestationFromLegacyFile(typeName, employeId, params);
+            }
+            throw e;
+        } catch (JRException e) {
+            log.error("JRXML compile/fill failed for template {}: {}", typeName, e.getMessage(), e);
+            throw new com.netcon.gestion_salaries.exception.UnprocessableEntityException(
+                    "JRXML compile/fill failed: " + e.getMessage(), e);
+        } catch (Exception e) {
+            log.error("Error generating attestation for template {}: {}", typeName, e.getMessage(), e);
+            throw new RuntimeException("Error generating attestation: " + e.getMessage(), e);
+        }
+    }
+    
+    private byte[] generateAttestationFromLegacyFile(String typeName, Long employeId, Map<String, Object> params) {
+        log.info("Using legacy file system for template: {}", typeName);
+        
+        // Map new template names to legacy file paths
+        String legacyFilePath = mapTemplateNameToLegacyFile(typeName);
+        
+        try (var inputStream = new ClassPathResource(legacyFilePath).getInputStream()) {
+            JasperReport report = JasperCompileManager.compileReport(inputStream);
+            log.debug("Legacy template compiled successfully: {}", legacyFilePath);
+            
+            try (java.sql.Connection connection = dataSource.getConnection()) {
+                if (!params.containsKey("employeId")) {
+                    params.put("employeId", employeId);
+                }
+                
+                JasperPrint jasperPrint = JasperFillManager.fillReport(report, params, connection);
+                byte[] pdfBytes = JasperExportManager.exportReportToPdf(jasperPrint);
+                
+                log.info("Legacy attestation generated successfully: type={}, size={} bytes", typeName, pdfBytes.length);
+                return pdfBytes;
+            }
+        } catch (Exception e) {
+            log.error("Failed to generate attestation from legacy file {}: {}", legacyFilePath, e.getMessage(), e);
+            throw new RuntimeException("Failed to generate attestation from legacy file: " + e.getMessage(), e);
+        }
+    }
+    
+    private String mapTemplateNameToLegacyFile(String typeName) {
+        return switch (typeName) {
+            case "SALAIRE" -> "reports/attestation_salaire.jrxml";
+            case "TRAVAIL" -> "reports/attestation_travail.jrxml";
+            case "TITULARISATION" -> "reports/attestation_titularisation.jrxml";
+            case "AVENANT_AUGMENTATION_SALAIRE" -> "reports/avenant_augmentation_salaire.jrxml";
+            case "ENGAGEMENT_VERSEMENT_SALAIRE" -> "reports/engagement_versement_salaire.jrxml";
+            default -> "reports/attestation_template.jrxml";
+        };
+    }
 
     private String generateProfessionalPdf(AttestationDto attestation, EmployeDto employe, String type) throws IOException, JRException {
         String dir = "pdfs/";
@@ -107,107 +193,47 @@ public class AttestationServiceImpl implements IAttestationService {
             System.setProperty("net.sf.jasperreports.xml.validation", "false");
             System.setProperty("net.sf.jasperreports.compiler.xml.validation", "false");
             
-            // Load the Jasper template
-            log.info("Loading Jasper template...");
-            String templatePath = "reports/attestation_template.jrxml";
-            if ("Attestation Salaire".equals(type)) {
-                templatePath = "reports/attestation_salaire.jrxml";
-            } else if ("Attestation Travail".equals(type)) {
-                templatePath = "reports/attestation_travail.jrxml";
-            } else if ("Attestation Titularisation".equals(type)) {
-                templatePath = "reports/attestation_titularisation.jrxml";
-            } else if ("Avenant Augmentation Salaire".equals(type)) {
-                templatePath = "reports/avenant_augmentation_salaire.jrxml";
-            } else if ("Engagement Versement Salaire".equals(type)) {
-                templatePath = "reports/engagement_versement_salaire.jrxml";
-            }
+            // Use new dynamic template loading - no more hardcoded switches
+            log.info("Loading Jasper template for type: {}", type);
             
-            // Load template content and log first few characters for debugging
-            ClassPathResource resource = new ClassPathResource(templatePath);
-            if (!resource.exists()) {
-                throw new IOException("Template file not found: " + templatePath);
-            }
+            // Map legacy type names to new template names
+            String templateName = mapLegacyTypeToTemplateName(type);
             
-            log.info("Loading Jasper template from classpath: {}", templatePath);
-            
-            // Read and log the beginning of the JRXML for debugging
-            try (java.io.InputStream debugStream = resource.getInputStream()) {
-                byte[] buffer = new byte[200];
-                int bytesRead = debugStream.read(buffer);
-                String preview = new String(buffer, 0, bytesRead, "UTF-8");
-                log.info("JRXML starts with: {}", preview.replaceAll("\\s+", " "));
-            } catch (Exception e) {
-                log.warn("Could not read JRXML preview: {}", e.getMessage());
-            }
-            
-            JasperReport jasperReport = JasperCompileManager.compileReport(resource.getInputStream());
-            log.info("Template compiled successfully");
-
-            // Prepare parameters
-            log.info("Preparing parameters...");
+            // Use the new generateAttestation method for consistency
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("typeAttestation", type);
             parameters.put("reference", "ATT-" + attestation.getId() + "-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")));
             parameters.put("currentDate", LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             parameters.put("ReportDate", LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             parameters.put("employeId", employe.getId());
-            log.info("Added employee ID parameter: {}", employe.getId());
             
-            // For SQL-based templates, we need a database connection
-            log.info("Preparing database connection...");
-            java.sql.Connection connection = null;
-            try {
-                // Get database connection from Spring's DataSource
-                connection = dataSource.getConnection();
-                log.info("Database connection established");
-
-                // Fill the report with SQL data source
-                log.info("Filling report with SQL data source...");
-                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, connection);
-                log.info("Report filled successfully");
-
-                // Export to PDF
-                log.info("Exporting to PDF file: {}", fileName);
-                JasperExportManager.exportReportToPdfFile(jasperPrint, fileName);
-
-                log.info("PDF generated successfully: {}", fileName);
+            // Generate PDF using new method
+            byte[] pdfBytes = generateAttestation(templateName, employe.getId(), parameters);
+            
+            // Write to file
+            try (java.io.FileOutputStream fos = new java.io.FileOutputStream(fileName)) {
+                fos.write(pdfBytes);
+                log.info("PDF written successfully: {}", fileName);
                 return fileName;
-
-            } finally {
-                if (connection != null) {
-                    connection.close();
-                    log.info("Database connection closed");
-                }
+            } catch (IOException e) {
+                log.error("Failed to write PDF file: {}", e.getMessage(), e);
+                throw new JRException("Failed to write PDF file: " + e.getMessage(), e);
             }
 
         } catch (Exception e) {
             log.error("Error generating PDF: {}", e.getMessage(), e);
-            
-            // Enhanced error logging
-            if (e.getCause() != null) {
-                log.error("Root cause class: {}", e.getCause().getClass().getName());
-                log.error("Root cause message: {}", e.getCause().getMessage());
-            }
-            
-            // Create a debug dump of the JRXML file
-            try {
-                String templatePath = "reports/attestation_template.jrxml";
-                if ("Attestation Salaire".equals(type)) {
-                    templatePath = "reports/attestation_salaire.jrxml";
-                }
-                ClassPathResource resource = new ClassPathResource(templatePath);
-                if (resource.exists()) {
-                    try (java.io.InputStream is = resource.getInputStream()) {
-                        String debugFile = "pdfs/_debug_attestation_error.jrxml";
-                        java.nio.file.Files.copy(is, java.nio.file.Paths.get(debugFile), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
-                        log.error("JRXML failed to load. A copy was dumped to {}", debugFile);
-                    }
-                }
-            } catch (Exception debugEx) {
-                log.warn("Could not create debug dump: {}", debugEx.getMessage());
-            }
-            
             throw new JRException("Failed to generate PDF: " + e.getMessage(), e);
         }
+    }
+    
+    private String mapLegacyTypeToTemplateName(String legacyType) {
+        return switch (legacyType) {
+            case "Attestation Salaire" -> "SALAIRE";
+            case "Attestation Travail" -> "TRAVAIL";
+            case "Attestation Titularisation" -> "TITULARISATION";
+            case "Avenant Augmentation Salaire" -> "AVENANT_AUGMENTATION_SALAIRE";
+            case "Engagement Versement Salaire" -> "ENGAGEMENT_VERSEMENT_SALAIRE";
+            default -> "TRAVAIL"; // Default fallback
+        };
     }
 }

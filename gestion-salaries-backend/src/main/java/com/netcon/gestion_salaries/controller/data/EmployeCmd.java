@@ -24,4 +24,5 @@ public class EmployeCmd {
     private String cnssNumero;
     private Double salaire;
     private String compteBancaireNumero;
+    private String sexe;
 }

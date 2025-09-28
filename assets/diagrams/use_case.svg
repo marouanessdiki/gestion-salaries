@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .title { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #333; text-anchor: middle; }
+    .actor { font-family: Arial, sans-serif; font-size: 12px; fill: #333; text-anchor: middle; }
+    .usecase { font-family: Arial, sans-serif; font-size: 10px; fill: #333; text-anchor: middle; }
+    .note { font-family: Arial, sans-serif; font-size: 10px; fill: #666; }
+  </style>
+  
+  <text x="400" y="30" class="title">Gestion Salaries - Use Case Diagram</text>
+  
+  <!-- HR Manager -->
+  <circle cx="100" cy="100" r="15" fill="lightblue" stroke="black"/>
+  <text x="100" y="140" class="actor">HR Manager</text>
+  
+  <!-- Admin -->
+  <circle cx="700" cy="100" r="15" fill="lightblue" stroke="black"/>
+  <text x="700" y="140" class="actor">Admin</text>
+  
+  <!-- Use Cases -->
+  <ellipse cx="300" cy="200" rx="80" ry="30" fill="lightgreen" stroke="black"/>
+  <text x="300" y="205" class="usecase">Manage Employees</text>
+  
+  <ellipse cx="500" cy="200" rx="80" ry="30" fill="lightgreen" stroke="black"/>
+  <text x="500" y="205" class="usecase">Generate Attestations</text>
+  
+  <ellipse cx="400" cy="300" rx="80" ry="30" fill="lightgreen" stroke="black"/>
+  <text x="400" y="305" class="usecase">Manage Templates</text>
+  
+  <!-- Relationships -->
+  <line x1="100" y1="100" x2="300" y2="200" stroke="black" stroke-width="2"/>
+  <line x1="700" y1="100" x2="500" y2="200" stroke="black" stroke-width="2"/>
+  <line x1="700" y1="100" x2="400" y2="300" stroke="black" stroke-width="2"/>
+  
+  <!-- Note -->
+  <rect x="50" y="400" width="700" height="150" fill="lightyellow" stroke="black" stroke-width="1"/>
+  <text x="60" y="420" class="note">Note: This is a placeholder diagram. To generate the actual UML diagram,</text>
+  <text x="60" y="440" class="note">install PlantUML and run: plantuml docs/uml/use_case.puml</text>
+  <text x="60" y="460" class="note">Key actors: HR Manager, Admin</text>
+  <text x="60" y="480" class="note">Main use cases: Employee Management, Attestation Generation, Template Management</text>
+  <text x="60" y="500" class="note">Admin has full access including template management and HR user approval</text>
+  <text x="60" y="520" class="note">HR can manage employees and generate attestations but cannot manage templates</text>
+</svg>

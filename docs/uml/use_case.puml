@@ -1,0 +1,92 @@
+@startuml use_case
+!theme plain
+skinparam backgroundColor white
+skinparam defaultTextAlignment center
+
+title Gestion Salaries - Use Case Diagram
+
+left to right direction
+
+actor "HR Manager" as hr
+actor "Admin" as admin
+actor "Employee" as emp
+
+rectangle "Employee Management System" {
+  usecase "Login" as login
+  usecase "Manage Employees" as manage_emp
+  usecase "Add Employee" as add_emp
+  usecase "Edit Employee" as edit_emp
+  usecase "Delete Employee" as del_emp
+  usecase "Search Employees" as search_emp
+  
+  usecase "Generate Attestations" as gen_att
+  usecase "Work Certificate" as work_cert
+  usecase "Salary Certificate" as salary_cert
+  usecase "Tenure Certificate" as tenure_cert
+  usecase "Salary Increase Amendment" as salary_inc
+  usecase "Salary Payment Commitment" as salary_pay
+  
+  usecase "Manage Templates" as manage_tmpl
+  usecase "Add Template" as add_tmpl
+  usecase "Edit Template" as edit_tmpl
+  usecase "Delete Template" as del_tmpl
+  
+  usecase "View Profile" as view_profile
+  usecase "Update Theme" as update_theme
+  usecase "HR Registration" as hr_reg
+}
+
+' HR Manager relationships
+hr --> login
+hr --> manage_emp
+hr --> gen_att
+hr --> view_profile
+hr --> update_theme
+
+' Admin relationships  
+admin --> login
+admin --> manage_emp
+admin --> gen_att
+admin --> manage_tmpl
+admin --> hr_reg
+admin --> view_profile
+admin --> update_theme
+
+' Employee Management extends
+manage_emp ..> add_emp : <<extends>>
+manage_emp ..> edit_emp : <<extends>>
+manage_emp ..> del_emp : <<extends>>
+manage_emp ..> search_emp : <<extends>>
+
+' Attestation Generation extends
+gen_att ..> work_cert : <<extends>>
+gen_att ..> salary_cert : <<extends>>
+gen_att ..> tenure_cert : <<extends>>
+gen_att ..> salary_inc : <<extends>>
+gen_att ..> salary_pay : <<extends>>
+
+' Template Management extends
+manage_tmpl ..> add_tmpl : <<extends>>
+manage_tmpl ..> edit_tmpl : <<extends>>
+manage_tmpl ..> del_tmpl : <<extends>>
+
+' Include relationships
+add_emp ..> login : <<include>>
+edit_emp ..> login : <<include>>
+del_emp ..> login : <<include>>
+gen_att ..> login : <<include>>
+manage_tmpl ..> login : <<include>>
+
+note right of admin
+  Admin has full system access
+  including template management
+  and HR user approval
+end note
+
+note right of hr
+  HR can manage employees
+  and generate attestations
+  but cannot manage templates
+end note
+
+@enduml

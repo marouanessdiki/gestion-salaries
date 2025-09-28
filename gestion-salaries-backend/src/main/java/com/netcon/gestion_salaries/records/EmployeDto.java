@@ -27,4 +27,5 @@ public class EmployeDto {
     private String cnssNumero;
     private Double salaire;
     private String compteBancaireNumero;
+    private String sexe;
 }

@@ -553,6 +553,12 @@ const EmployeList = ({ employes, onEdit, onDelete }) => {
                                         </TableSortLabel>
                                     </TableCell>
                                     <TableCell sx={{ color: 'white', fontWeight: 700, fontSize: '1rem', py: 2 }}>
+                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                            <PersonIcon fontSize="small" />
+                                            Sexe
+                                        </Box>
+                                    </TableCell>
+                                    <TableCell sx={{ color: 'white', fontWeight: 700, fontSize: '1rem', py: 2 }}>
                                         <TableSortLabel
                                             active={sortBy === 'poste'}
                                             direction={sortBy === 'poste' ? sortOrder : 'asc'}
@@ -671,6 +677,17 @@ const EmployeList = ({ employes, onEdit, onDelete }) => {
                                                 </Typography>
                                             </TableCell>
                                             <TableCell sx={{ py: 2 }}>
+                                                <Chip
+                                                    label={emp.sexe === 'M' ? 'Masculin' : emp.sexe === 'F' ? 'Féminin' : 'Non renseigné'}
+                                                    color={emp.sexe === 'M' ? 'primary' : emp.sexe === 'F' ? 'secondary' : 'default'}
+                                                    size="small"
+                                                    sx={{
+                                                        fontWeight: 600,
+                                                        borderRadius: 2
+                                                    }}
+                                                />
+                                            </TableCell>
+                                            <TableCell sx={{ py: 2 }}>
                                                 <Typography variant="body1" sx={{ fontWeight: 500, color: 'text.primary' }}>
                                                     {emp.poste}
                                                 </Typography>
@@ -744,7 +761,7 @@ const EmployeList = ({ employes, onEdit, onDelete }) => {
                                 ))}
                                 {filteredAndSortedEmployes.length === 0 && searchTerm && (
                                     <TableRow>
-                                        <TableCell colSpan={7} sx={{ textAlign: 'center', py: 6 }}>
+                                        <TableCell colSpan={8} sx={{ textAlign: 'center', py: 6 }}>
                                             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
                                                 <Avatar
                                                     sx={{

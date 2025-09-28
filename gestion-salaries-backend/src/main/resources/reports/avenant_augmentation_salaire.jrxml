@@ -1,7 +1,7 @@
 <!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
 <jasperReport name="avenant_augmentation_salaire" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a6dc72e1-8d6f-4f6d-8e7a-8d5c8f8e8d7e">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
-	<query language="sql"><![CDATA[SELECT prenom, nom, cin, cnss_numero, poste, date_embauche, salaire
+	<query language="sql"><![CDATA[SELECT prenom, nom, cin, cnss_numero, poste, date_embauche, salaire, sexe
 FROM employe
 WHERE id = $P{employeId}]]></query>
 	
@@ -17,6 +17,7 @@ WHERE id = $P{employeId}]]></query>
 	<field name="poste" class="java.lang.String"/>
 	<field name="date_embauche" class="java.lang.String"/>
 	<field name="salaire" class="java.lang.String"/>
+	<field name="sexe" class="java.lang.String"/>
 	
 	<background splitType="Stretch"/>
 	<title height="190" splitType="Stretch">
@@ -37,7 +38,7 @@ WHERE id = $P{employeId}]]></query>
 	<detail>
 		<band height="300" splitType="Stretch">
 			<element kind="textField" uuid="d5678901-cdef-0123-4567-89abcdef0123" x="30" y="10" width="495" height="40" fontSize="10.0" hTextAlign="Justified">
-				<expression><![CDATA["Madame/Monsieur L'EMPLOYEUR\n\nMadame " + ($F{prenom} != null ? $F{prenom}.toUpperCase() : "") + " " + ($F{nom} != null ? $F{nom}.toUpperCase() : "") + " titulaire de la carte d'identité nationale N° " + ($F{cin} != null ? $F{cin} : "") + " et de la carte d'immatriculation CNSS N° " + ($F{cnss_numero} != null ? $F{cnss_numero} : "") + ".\n\nCi après dénommée \"la Salariée\";"]]></expression>
+				<expression><![CDATA["Madame/Monsieur L'EMPLOYEUR\n\n" + ($F{sexe} != null && $F{sexe}.equals("F") ? "Madame" : "Monsieur") + " " + ($F{prenom} != null ? $F{prenom}.toUpperCase() : "") + " " + ($F{nom} != null ? $F{nom}.toUpperCase() : "") + " titulaire de la carte d'identité nationale N° " + ($F{cin} != null ? $F{cin} : "") + " et de la carte d'immatriculation CNSS N° " + ($F{cnss_numero} != null ? $F{cnss_numero} : "") + ".\n\nCi après dénommée \"la Salariée\";"]]></expression>
 			</element>
 			
 			<element kind="textField" uuid="d6789012-def0-1234-5678-9abcdef01234" x="30" y="60" width="300" height="15" fontSize="11.0" bold="true">

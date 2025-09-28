@@ -1,0 +1,5 @@
+# Attestation configuration
+attestations:
+  reportDir: src/main/resources/reports/attestations
+  
+# Add this to existing application.yml or create if it doesn't exist

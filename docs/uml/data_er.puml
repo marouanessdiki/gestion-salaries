@@ -1,0 +1,109 @@
+@startuml data_er
+!theme plain
+skinparam backgroundColor white
+skinparam entity {
+  BackgroundColor lightblue
+  BorderColor black
+  FontName Arial
+}
+skinparam relationship {
+  BackgroundColor white
+  BorderColor black
+}
+
+title Gestion Salaries - Entity Relationship Diagram
+
+entity "Employe" as emp {
+  * id : Long <<PK>>
+  --
+  * nom : String
+  * prenom : String
+  * cin : String
+  * poste : String
+  * service : String
+  * dateEmbauche : LocalDate
+  * cnssNumero : String
+  * salaire : Double
+  * compteBancaireNumero : String
+  * sexe : String
+}
+
+entity "Attestation" as att {
+  * id : Long <<PK>>
+  --
+  * employeId : Long <<FK>>
+  * typeAttestation : String
+  * dateGeneration : LocalDateTime
+  * cheminFichier : String
+}
+
+entity "AttestationTemplate" as tmpl {
+  * id : Long <<PK>>
+  --
+  * name : String <<UNIQUE>>
+  * jrxml : String <<LOB>>
+  * updatedAt : LocalDateTime
+}
+
+entity "Hr" as hr {
+  * id : Long <<PK>>
+  --
+  * username : String <<UNIQUE>>
+  * password : String
+  * isApproved : Boolean
+  * fullName : String
+  * email : String
+  * phone : String
+  * position : String
+  * department : String
+  * darkTheme : Boolean
+}
+
+entity "Parametre" as param {
+  * id : Long <<PK>>
+  --
+  * type : String
+  * value : String
+  * label : String
+  --
+  <<UNIQUE(type, value)>>
+}
+
+' Relationships
+emp ||--o{ att : "generates"
+tmpl ||--o{ att : "uses template"
+hr ||--o{ att : "creates"
+
+note right of emp
+  Employee entity stores
+  all employee information
+  including salary and
+  employment details
+end note
+
+note right of att
+  Attestation links to
+  employee and stores
+  generation metadata
+  and file path
+end note
+
+note right of tmpl
+  Templates store JRXML
+  content for different
+  attestation types
+end note
+
+note left of hr
+  HR users can create
+  attestations and manage
+  employees (if approved)
+end note
+
+note bottom of param
+  System parameters
+  for configuration
+  and dropdown values
+end note
+
+@enduml

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="800" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .title { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #333; text-anchor: middle; }
+    .participant { font-family: Arial, sans-serif; font-size: 12px; fill: #333; text-anchor: middle; }
+    .message { font-family: Arial, sans-serif; font-size: 10px; fill: #333; }
+    .note { font-family: Arial, sans-serif; font-size: 10px; fill: #666; }
+  </style>
+  
+  <text x="500" y="30" class="title">Gestion Salaries - Attestation Generation Sequence</text>
+  
+  <!-- Participants -->
+  <rect x="50" y="60" width="80" height="40" fill="lightblue" stroke="black"/>
+  <text x="90" y="85" class="participant">HR User</text>
+  
+  <rect x="150" y="60" width="80" height="40" fill="lightgreen" stroke="black"/>
+  <text x="190" y="85" class="participant">Frontend</text>
+  
+  <rect x="250" y="60" width="120" height="40" fill="lightgreen" stroke="black"/>
+  <text x="310" y="85" class="participant">AttestationController</text>
+  
+  <rect x="390" y="60" width="120" height="40" fill="lightcoral" stroke="black"/>
+  <text x="450" y="85" class="participant">AttestationService</text>
+  
+  <rect x="530" y="60" width="100" height="40" fill="lightyellow" stroke="black"/>
+  <text x="580" y="85" class="participant">JasperReportService</text>
+  
+  <rect x="650" y="60" width="80" height="40" fill="lightgray" stroke="black"/>
+  <text x="690" y="85" class="participant">Database</text>
+  
+  <!-- Lifelines -->
+  <line x1="90" y1="100" x2="90" y2="750" stroke="black" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="190" y1="100" x2="190" y2="750" stroke="black" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="310" y1="100" x2="310" y2="750" stroke="black" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="450" y1="100" x2="450" y2="750" stroke="black" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="580" y1="100" x2="580" y2="750" stroke="black" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="690" y1="100" x2="690" y2="750" stroke="black" stroke-width="1" stroke-dasharray="5,5"/>
+  
+  <!-- Messages -->
+  <line x1="90" y1="150" x2="190" y2="150" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="140" y="145" class="message">Select employee & attestation type</text>
+  
+  <line x1="190" y1="200" x2="310" y2="200" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="250" y="195" class="message">POST /api/attestations/generate</text>
+  
+  <line x1="310" y1="250" x2="450" y2="250" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="380" y="245" class="message">generateAttestation(employeId, type)</text>
+  
+  <line x1="450" y1="300" x2="690" y2="300" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="570" y="295" class="message">findById(employeId)</text>
+  
+  <line x1="690" y1="320" x2="450" y2="320" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="570" y="335" class="message">Employee data</text>
+  
+  <line x1="450" y1="370" x2="580" y2="370" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="515" y="365" class="message">generatePDF(employee, template)</text>
+  
+  <line x1="580" y1="420" x2="690" y2="420" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="635" y="415" class="message">Save PDF file</text>
+  
+  <line x1="450" y1="470" x2="310" y2="470" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="380" y="485" class="message">AttestationDto with download URL</text>
+  
+  <line x1="310" y1="520" x2="190" y2="520" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="250" y="535" class="message">HTTP 200 - Success</text>
+  
+  <line x1="90" y1="570" x2="190" y2="570" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="140" y="565" class="message">Click download link</text>
+  
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="black"/>
+    </marker>
+  </defs>
+  
+  <!-- Note -->
+  <rect x="50" y="620" width="900" height="120" fill="lightyellow" stroke="black" stroke-width="1"/>
+  <text x="60" y="640" class="note">Note: This is a placeholder diagram. To generate the actual sequence diagram,</text>
+  <text x="60" y="660" class="note">install PlantUML and run: plantuml docs/uml/sequence.puml</text>
+  <text x="60" y="680" class="note">Key process: Employee selection → Validation → Template lookup → PDF generation → File storage → Download</text>
+  <text x="60" y="700" class="note">The process ensures employee validation, template availability, PDF generation with actual data,</text>
+  <text x="60" y="720" class="note">secure file storage, and audit trail in database</text>
+</svg>

@@ -1,0 +1,140 @@
+project:
+  name: "Gestion Salaries - Employee Management System"
+  start_date: "2024-07-01"
+  duration_weeks: 8
+
+phases:
+  - name: "Analysis & Design"
+    duration: 1.5
+    start_week: 1
+    tasks:
+      - name: "Requirements Analysis"
+        duration: 0.5
+        dependencies: []
+        assignee: "Developer"
+        description: "Define functional and non-functional requirements"
+      - name: "System Architecture Design"
+        duration: 0.5
+        dependencies: ["Requirements Analysis"]
+        assignee: "Developer"
+        description: "Design system architecture and technology stack"
+      - name: "Database Modeling"
+        duration: 0.5
+        dependencies: ["System Architecture Design"]
+        assignee: "Developer"
+        description: "Create database schema and entity relationships"
+
+  - name: "Backend Development"
+    duration: 3.0
+    start_week: 2.5
+    tasks:
+      - name: "Spring Boot Setup"
+        duration: 0.5
+        dependencies: ["Database Modeling"]
+        assignee: "Developer"
+        description: "Initialize Spring Boot project and configuration"
+      - name: "Entity & Repository Layer"
+        duration: 0.5
+        dependencies: ["Spring Boot Setup"]
+        assignee: "Developer"
+        description: "Create JPA entities and repositories"
+      - name: "Service Layer Implementation"
+        duration: 1.0
+        dependencies: ["Entity & Repository Layer"]
+        assignee: "Developer"
+        description: "Implement business logic and services"
+      - name: "REST API Development"
+        duration: 0.5
+        dependencies: ["Service Layer Implementation"]
+        assignee: "Developer"
+        description: "Create REST controllers and endpoints"
+      - name: "JasperReports Integration"
+        duration: 0.5
+        dependencies: ["REST API Development"]
+        assignee: "Developer"
+        description: "Integrate JasperReports for PDF generation"
+
+  - name: "Frontend Development"
+    duration: 2.5
+    start_week: 5.5
+    tasks:
+      - name: "React Project Setup"
+        duration: 0.5
+        dependencies: ["REST API Development"]
+        assignee: "Developer"
+        description: "Initialize React project with Material-UI"
+      - name: "Authentication Components"
+        duration: 0.5
+        dependencies: ["React Project Setup"]
+        assignee: "Developer"
+        description: "Create login and signup components"
+      - name: "Employee Management UI"
+        duration: 1.0
+        dependencies: ["Authentication Components"]
+        assignee: "Developer"
+        description: "Build employee CRUD interfaces"
+      - name: "Attestation Generation UI"
+        duration: 0.5
+        dependencies: ["Employee Management UI"]
+        assignee: "Developer"
+        description: "Create attestation generation interface"
+
+  - name: "Testing & Integration"
+    duration: 0.5
+    start_week: 8
+    tasks:
+      - name: "Unit Testing"
+        duration: 0.25
+        dependencies: ["Attestation Generation UI"]
+        assignee: "Developer"
+        description: "Write and execute unit tests"
+      - name: "Integration Testing"
+        duration: 0.25
+        dependencies: ["Unit Testing"]
+        assignee: "Developer"
+        description: "Test system integration and API endpoints"
+
+  - name: "Deployment & Documentation"
+    duration: 0.5
+    start_week: 8.5
+    tasks:
+      - name: "Production Configuration"
+        duration: 0.25
+        dependencies: ["Integration Testing"]
+        assignee: "Developer"
+        description: "Configure application for production deployment"
+      - name: "Technical Documentation"
+        duration: 0.25
+        dependencies: ["Production Configuration"]
+        assignee: "Developer"
+        description: "Complete technical documentation and user guides"
+
+milestones:
+  - name: "Requirements Complete"
+    date: "2024-07-10"
+    phase: "Analysis & Design"
+  - name: "Backend API Ready"
+    date: "2024-08-02"
+    phase: "Backend Development"
+  - name: "Frontend Complete"
+    date: "2024-08-23"
+    phase: "Frontend Development"
+  - name: "Production Ready"
+    date: "2024-08-30"
+    phase: "Deployment & Documentation"
+
+resources:
+  - name: "Developer"
+    role: "Full-Stack Developer"
+    availability: 1.0
+  - name: "Supervisor"
+    role: "Technical Supervisor"
+    availability: 0.2
+
+methodology: "Waterfall"
+supervision:
+  frequency: "Weekly meetings"
+  supervisor: "M. Ahmed ASSIMI"
+  review_gates: 
+    - "End of each phase"
+    - "Major milestone completion"

@@ -1,0 +1,123 @@
+@startuml sequence
+!theme plain
+skinparam backgroundColor white
+skinparam participant {
+  BackgroundColor lightblue
+  BorderColor black
+}
+skinparam sequence {
+  ArrowColor black
+  LifeLineBackgroundColor white
+  LifeLineBorderColor black
+  ParticipantBackgroundColor lightblue
+  ParticipantBorderColor black
+}
+
+title Gestion Salaries - Attestation Generation Sequence
+
+actor "HR User" as hr
+participant "Frontend\n(React)" as fe
+participant "AttestationController\n(REST API)" as ctrl
+participant "AttestationService\n(Business Logic)" as svc
+participant "EmployeRepository\n(Data Access)" as emp_repo
+participant "AttestationTemplateRepository\n(Template Access)" as tmpl_repo
+participant "JasperReportService\n(PDF Generator)" as jasper
+participant "Database\n(MySQL)" as db
+participant "File System\n(PDF Storage)" as fs
+
+hr -> fe : Select employee for attestation
+activate fe
+
+fe -> fe : Display attestation type selection
+hr -> fe : Choose attestation type (e.g., "Salary Certificate")
+
+fe -> ctrl : POST /api/attestations/generate
+activate ctrl
+note right : Request contains:\n- employeId\n- attestationType
+
+ctrl -> svc : generateAttestation(employeId, type)
+activate svc
+
+svc -> emp_repo : findById(employeId)
+activate emp_repo
+emp_repo -> db : SELECT * FROM employe WHERE id = ?
+activate db
+db --> emp_repo : Employee data
+deactivate db
+emp_repo --> svc : Employee entity
+deactivate emp_repo
+
+alt Employee not found
+  svc --> ctrl : throw EmployeException("Employee not found")
+  ctrl --> fe : HTTP 404 - Employee not found
+  fe --> hr : Display error message
+end
+
+svc -> tmpl_repo : findByName(attestationType)
+activate tmpl_repo
+tmpl_repo -> db : SELECT * FROM attestation_templates WHERE name = ?
+activate db
+db --> tmpl_repo : Template data
+deactivate db
+tmpl_repo --> svc : AttestationTemplate entity
+deactivate tmpl_repo
+
+alt Template not found
+  svc --> ctrl : throw AttestationException("Template not found")
+  ctrl --> fe : HTTP 404 - Template not found
+  fe --> hr : Display error message
+end
+
+svc -> jasper : generatePDF(employee, template)
+activate jasper
+
+jasper -> jasper : Compile JRXML template
+jasper -> jasper : Fill report with employee data
+jasper -> jasper : Export to PDF
+
+jasper -> fs : Save PDF file
+activate fs
+fs --> jasper : File path
+deactivate fs
+
+jasper --> svc : PDF file path
+deactivate jasper
+
+svc -> db : INSERT INTO attestation (employe_id, type_attestation, date_generation, chemin_fichier)
+activate db
+db --> svc : Attestation ID
+deactivate db
+
+svc --> ctrl : AttestationDto (with download URL)
+deactivate svc
+
+ctrl --> fe : HTTP 200 - Attestation generated successfully
+deactivate ctrl
+
+fe -> fe : Display success message
+fe -> fe : Show download link
+
+hr -> fe : Click download link
+fe -> ctrl : GET /api/attestations/{id}/download
+activate ctrl
+
+ctrl -> fs : Read PDF file
+activate fs
+fs --> ctrl : PDF content
+deactivate fs
+
+ctrl --> fe : HTTP 200 - PDF file stream
+deactivate ctrl
+
+fe --> hr : Download PDF file
+
+note over hr, fs
+  The entire process ensures:
+  1. Employee validation
+  2. Template availability  
+  3. PDF generation with actual data
+  4. Secure file storage
+  5. Audit trail in database
+end note
+
+@enduml
