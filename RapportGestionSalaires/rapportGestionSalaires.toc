@@ -50,13 +50,17 @@
 \contentsline {subsection}{\numberline {4.5.1}Backend Testing}{34}{subsection.4.5.1}%
 \contentsline {subsection}{\numberline {4.5.2}Frontend Testing}{34}{subsection.4.5.2}%
 \contentsline {subsection}{\numberline {4.5.3}Test Results}{34}{subsection.4.5.3}%
-\contentsline {section}{\numberline {4.6}System Realization}{35}{section.4.6}%
-\contentsline {subsection}{\numberline {4.6.1}User Interface Implementation}{35}{subsection.4.6.1}%
-\contentsline {subsubsection}{Authentication System}{35}{section*.25}%
-\contentsline {subsubsection}{Employee Management Interface}{36}{section*.28}%
-\contentsline {subsubsection}{Attestation Management System}{37}{section*.32}%
-\contentsline {subsubsection}{Administrative Features}{39}{section*.37}%
-\contentsline {subsection}{\numberline {4.6.2}System Features Demonstration}{41}{subsection.4.6.2}%
-\contentsline {subsection}{\numberline {4.6.3}Technical Implementation Results}{41}{subsection.4.6.3}%
-\contentsline {section}{\numberline {4.7}Conclusion}{42}{section.4.7}%
-\contentsline {section}{General Conclusion}{43}{section*.41}%
+\contentsline {section}{\numberline {4.6}Advanced Features Implementation}{35}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}Dynamic Template Management System}{35}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Enhanced User Interface Features}{35}{subsection.4.6.2}%
+\contentsline {subsection}{\numberline {4.6.3}Streamlined User Experience}{36}{subsection.4.6.3}%
+\contentsline {section}{\numberline {4.7}System Realization}{37}{section.4.7}%
+\contentsline {subsection}{\numberline {4.7.1}User Interface Implementation}{37}{subsection.4.7.1}%
+\contentsline {subsubsection}{Authentication System}{37}{section*.25}%
+\contentsline {subsubsection}{Employee Management Interface}{38}{section*.28}%
+\contentsline {subsubsection}{Attestation Management System}{39}{section*.32}%
+\contentsline {subsubsection}{Administrative Features}{41}{section*.37}%
+\contentsline {subsection}{\numberline {4.7.2}System Features Demonstration}{43}{subsection.4.7.2}%
+\contentsline {subsection}{\numberline {4.7.3}Technical Implementation Results}{44}{subsection.4.7.3}%
+\contentsline {section}{\numberline {4.8}Conclusion}{45}{section.4.8}%
+\contentsline {section}{General Conclusion}{47}{section*.41}%
