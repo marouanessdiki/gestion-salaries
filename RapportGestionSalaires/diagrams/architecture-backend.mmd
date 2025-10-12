@@ -1,0 +1,56 @@
+%% Mermaid diagram for backend layered architecture
+flowchart TB
+  subgraph Controllers
+    C1[EmployeRestController]
+    C2[AttestationRestController]
+    C3[ParametreController]
+    C4[AuthController]
+    C5[HrController]
+  end
+
+  subgraph Services
+    S1[EmployeService]
+    S2[AttestationServiceImpl]
+    S3[ParametreService]
+    S4[AttestationTemplateService]
+    S5[AttestationTemplateMigrationService]
+  end
+
+  subgraph DataAccess[DAO / Repository]
+    R1[EmployeRepository]
+    R2[AttestationRepository]
+    R3[ParametreRepository]
+    R4[HrRepository]
+    R5[AttestationTemplateRepository]
+  end
+
+  subgraph Infra
+    DB[(MySQL)]
+    JR[(JasperReports)]
+    FS[[pdfs/ folder]]
+  end
+
+  %% Edges
+  C1 --> S1
+  C2 --> S2
+  C3 --> S3
+  C3 --> S4
+  C3 --> S5
+  C4 --> R4
+  C5 --> R4
+
+  S1 --> R1
+  S2 --> R2
+  S2 --> R1
+  S2 --> JR
+  S2 --> FS
+  S3 --> R3
+  S4 --> R5
+  S5 --> R5
+
+  R1 --> DB
+  R2 --> DB
+  R3 --> DB
+  R4 --> DB
+  R5 --> DB
+

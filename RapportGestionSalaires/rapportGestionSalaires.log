@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.27)  28 SEP 2025 21:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.27)  10 OCT 2025 23:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -76,11 +76,7 @@ Style option: `fancybox' v1.4 <2010/05/15> (tvz)
 \EndVerbatimTokens=\toks22
 \Verbatim@Outfile=\write3
 \Verbatim@Infile=\read3
-) (C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex/latex/a4wide\a4wide.sty
-Package: a4wide 1994/08/30
- (C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex/latex/ntgclass\a4.sty
-Package: a4 2023/01/10 v1.2g A4 based page layout
-)) (C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+) (C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
 Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
  (C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
@@ -434,7 +430,7 @@ Package pdftexcmds Info: \pdfdraftmode found.
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
 Package grfext Info: Graphics extension search list:
-(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
+(grfext)             [.png,.pdf,.jpg,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 504.
  (C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
@@ -859,32 +855,32 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 )
 \Hy@SectionHShift=\skip132
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 126.
-Package hyperref Info: Option `pageanchor' set `false' on input line 126.
+Package hyperref Info: Option `colorlinks' set `true' on input line 129.
+Package hyperref Info: Option `pageanchor' set `false' on input line 129.
  (C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count387
 ) (rapportGestionSalaires.aux)
 \openout1 = `rapportGestionSalaires.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
  (C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count388
@@ -936,7 +932,7 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 * \headsep=25.0pt
 * \topskip=12.0pt
 * \footskip=30.0pt
-* \marginparwidth=54.2025pt
+* \marginparwidth=35.0pt
 * \marginparsep=10.0pt
 * \columnsep=10.0pt
 * \skip\footins=10.8pt plus 4.0pt minus 2.0pt
@@ -950,25 +946,25 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \c@lstlisting=\count394
-Package hyperref Info: Link coloring ON on input line 146.
+Package hyperref Info: Link coloring ON on input line 149.
 (rapportGestionSalaires.out) (rapportGestionSalaires.out)
 \@outlinefile=\write5
 \openout5 = `rapportGestionSalaires.out'.
 
-<./assets/ensias.png, id=214, 293.095pt x 248.93pt>
+<./assets/ensias.png, id=250, 293.095pt x 248.93pt>
 File: ./assets/ensias.png Graphic file (type png)
 <use ./assets/ensias.png>
-Package pdftex.def Info: ./assets/ensias.png  used on input line 154.
+Package pdftex.def Info: ./assets/ensias.png  used on input line 157.
 (pdftex.def)             Requested size: 79.6668pt x 67.6602pt.
-<./assets/logo.png, id=216, 239.09325pt x 194.52675pt>
+<./assets/logo.png, id=252, 239.09325pt x 194.52675pt>
 File: ./assets/logo.png Graphic file (type png)
 <use ./assets/logo.png>
-Package pdftex.def Info: ./assets/logo.png  used on input line 159.
+Package pdftex.def Info: ./assets/logo.png  used on input line 162.
 (pdftex.def)             Requested size: 89.62799pt x 72.92062pt.
-<./assets/um5.png, id=217, 143.78719pt x 143.03438pt>
+<./assets/um5.png, id=253, 143.78719pt x 143.03438pt>
 File: ./assets/um5.png Graphic file (type png)
 <use ./assets/um5.png>
-Package pdftex.def Info: ./assets/um5.png  used on input line 163.
+Package pdftex.def Info: ./assets/um5.png  used on input line 166.
 (pdftex.def)             Requested size: 99.58313pt x 99.06483pt.
 
 
@@ -997,27 +993,27 @@ Package pdftex.def Info: ./assets/um5.png  used on input line 163.
 
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 377--378
+Underfull \hbox (badness 10000) in paragraph at lines 380--381
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 379--380
+Underfull \hbox (badness 10000) in paragraph at lines 382--383
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 381--382
+Underfull \hbox (badness 10000) in paragraph at lines 384--385
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 383--388
+Underfull \hbox (badness 10000) in paragraph at lines 386--391
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 389--390
+Underfull \hbox (badness 10000) in paragraph at lines 392--393
 
  []
 
@@ -1029,36 +1025,30 @@ Underfull \hbox (badness 10000) in paragraph at lines 389--390
 
 [2]
 
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 422--423
+[3
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 426--427
 
  []
 
 File: ./assets/logo.png Graphic file (type png)
 <use ./assets/logo.png>
-Package pdftex.def Info: ./assets/logo.png  used on input line 424.
+Package pdftex.def Info: ./assets/logo.png  used on input line 428.
 (pdftex.def)             Requested size: 199.16626pt x 162.0508pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 424--425
+Underfull \hbox (badness 10000) in paragraph at lines 428--429
 
  []
 
 
 
-[4]
+[4
+
+]
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 476--478
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 479--480
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 481--482
+Underfull \hbox (badness 10000) in paragraph at lines 480--482
 
  []
 
@@ -1073,134 +1063,95 @@ Underfull \hbox (badness 10000) in paragraph at lines 485--486
  []
 
 
-
-[6]
-Underfull \hbox (badness 1137) in paragraph at lines 487--488
-[]\T1/cmr/bx/n/12 - \T1/cmr/m/it/12 Tem-plate Man-age-ment Sys-tem: \T1/cmr/m/n/12 Ad-min-is-tra-tors can dy-nam-i-cally man-age JRXML
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 487--488
 
  []
 
 
+
+[6]
 Underfull \hbox (badness 10000) in paragraph at lines 489--490
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 499--500
+Underfull \hbox (badness 1137) in paragraph at lines 491--492
+[]\T1/cmr/bx/n/12 - \T1/cmr/m/it/12 Tem-plate Man-age-ment Sys-tem: \T1/cmr/m/n/12 Ad-min-is-tra-tors can dy-nam-i-cally man-age JRXML
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 491--492
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 501--502
+Underfull \hbox (badness 10000) in paragraph at lines 493--494
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 503--504
+Underfull \hbox (badness 10000) in paragraph at lines 495--496
 
  []
 
 
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 506--507
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 508--509
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 510--511
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 512--513
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 514--515
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 516--517
-
- []
-
+<./assets/diagramme-gantt-netcon.png, id=425, 616.10175pt x 344.487pt>
+File: ./assets/diagramme-gantt-netcon.png Graphic file (type png)
+<use ./assets/diagramme-gantt-netcon.png>
+Package pdftex.def Info: ./assets/diagramme-gantt-netcon.png  used on input line 525.
+(pdftex.def)             Requested size: 487.96265pt x 272.84084pt.
 
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 524--525
+<./assets/waterfall-diagramme.png, id=429, 510.10574pt x 347.49825pt>
+File: ./assets/waterfall-diagramme.png Graphic file (type png)
+<use ./assets/waterfall-diagramme.png>
+Package pdftex.def Info: ./assets/waterfall-diagramme.png  used on input line 534.
+(pdftex.def)             Requested size: 448.12788pt x 305.27974pt.
+
+
+[9 <./assets/diagramme-gantt-netcon.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 541--542
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 526--527
+Underfull \hbox (badness 10000) in paragraph at lines 543--544
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 528--529
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 530--531
+Underfull \hbox (badness 10000) in paragraph at lines 545--546
 
  []
 
 
 
-[9]
-
-[10]
-Underfull \hbox (badness 10000) in paragraph at lines 554--555
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 556--558
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 559--561
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 562--564
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 565--567
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 568--570
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 571--573
+[10 <./assets/waterfall-diagramme.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 547--548
 
  []
 
 
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 578--579
+
+[12
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 572--573
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 574--576
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 577--579
 
  []
 
@@ -1225,275 +1176,466 @@ Underfull \hbox (badness 10000) in paragraph at lines 589--591
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 592--594
+
+[13
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 596--597
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 595--597
+Underfull \hbox (badness 10000) in paragraph at lines 598--600
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 599--600
+Underfull \hbox (badness 10000) in paragraph at lines 601--603
 
  []
 
 
-
-[12]
-Underfull \hbox (badness 10000) in paragraph at lines 626--627
+Underfull \hbox (badness 10000) in paragraph at lines 604--606
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 628--629
+Underfull \hbox (badness 10000) in paragraph at lines 607--609
 
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 610--612
 
-[13]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 613--615
+
+ []
+
+
 
 [14]
 
 [15]
+Underfull \hbox (badness 10000) in paragraph at lines 686--687
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 688--689
+
+ []
+
+
 
 [16]
 
 [17]
-Overfull \hbox (29.3171pt too wide) in paragraph at lines 840--841
+
+[18
+
+]
+<./assets/diagramme use cas.png, id=464, 453.49425pt x 296.307pt>
+File: ./assets/diagramme use cas.png Graphic file (type png)
+<use ./assets/diagramme use cas.png>
+Package pdftex.def Info: ./assets/diagramme use cas.png  used on input line 734.
+(pdftex.def)             Requested size: 473.02556pt x 309.08339pt.
+
+
+[19
+
+]
+<./assets/Génération d'attestation diagramme de sequence.png, id=469, 811.53188pt x 1486.80469pt>
+File: ./assets/Génération d'attestation diagramme de sequence.png Graphic file (type png)
+<use ./assets/Génération d'attestation diagramme de sequence.png>
+Package pdftex.def Info: ./assets/Génération d'attestation diagramme de sequence.png  used on input line 744.
+(pdftex.def)             Requested size: 348.54475pt x 638.58759pt.
+
+
+[20 <./assets/diagramme use cas.png>]
+<./assets/Gestion des employés 1.png, id=474, 801.74532pt x 706.89093pt>
+File: ./assets/Gestion des employés 1.png Graphic file (type png)
+<use ./assets/Gestion des employés 1.png>
+Package pdftex.def Info: ./assets/Gestion des employés 1.png  used on input line 754.
+(pdftex.def)             Requested size: 473.02556pt x 417.07281pt.
+
+
+[21 <./assets/Génération d'attestation diagramme de sequence.png>]
+<./assets/Gestion des employés 2.png, id=479, 800.9925pt x 647.41875pt>
+File: ./assets/Gestion des employés 2.png Graphic file (type png)
+<use ./assets/Gestion des employés 2.png>
+Package pdftex.def Info: ./assets/Gestion des employés 2.png  used on input line 761.
+(pdftex.def)             Requested size: 473.02556pt x 382.33926pt.
+
+
+[22 <./assets/Gestion des employés 1.png>]
+<./assets/diagrammes-des-classes-netcon.png, id=484, 617.9085pt x 332.442pt>
+File: ./assets/diagrammes-des-classes-netcon.png Graphic file (type png)
+<use ./assets/diagrammes-des-classes-netcon.png>
+Package pdftex.def Info: ./assets/diagrammes-des-classes-netcon.png  used on input line 771.
+(pdftex.def)             Requested size: 473.02556pt x 254.48976pt.
+
+
+[23 <./assets/Gestion des employés 2.png>]
+<./assets/backend layer archi (springboot).png, id=490, 1027.84pt x 1541.76pt>
+File: ./assets/backend layer archi (springboot).png Graphic file (type png)
+<use ./assets/backend layer archi (springboot).png>
+Package pdftex.def Info: ./assets/backend layer archi (springboot).png  used on input line 784.
+(pdftex.def)             Requested size: 199.16626pt x 298.7482pt.
+
+
+[24 <./assets/diagrammes-des-classes-netcon.png>]
+
+[25 <./assets/backend layer archi (springboot).png (PNG copy)>]
+Overfull \hbox (29.3171pt too wide) in paragraph at lines 857--858
  [][] 
  []
 
 
 
-[18]
-
-[19]
-
-[20]
-Underfull \hbox (badness 10000) in paragraph at lines 884--894
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 884--894
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 884--894
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 895--903
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 895--903
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 895--903
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 904--912
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 904--912
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 904--912
-
- []
-
-
-
-[21]
-Underfull \hbox (badness 10000) in paragraph at lines 913--921
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 913--921
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 913--921
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 923--933
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 923--933
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 923--933
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 934--942
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 934--942
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 934--942
-
- []
-
-
-
-[22]
-Underfull \hbox (badness 10000) in paragraph at lines 943--951
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--963
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--963
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--963
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 964--972
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 964--972
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 964--972
-
- []
-
-
-
-[23] (C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-) (C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-)
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 984.
-
-
-[24] (C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-)
-
-[25]
-
 [26]
 
 [27]
 
-[28]
+[28
 
-[29]
+]
+<assets/spring-boot-logo.png, id=507, 602.25pt x 228.855pt>
+File: assets/spring-boot-logo.png Graphic file (type png)
+<use assets/spring-boot-logo.png>
+Package pdftex.def Info: assets/spring-boot-logo.png  used on input line 911.
+(pdftex.def)             Requested size: 56.9055pt x 21.62271pt.
 
-[30]
+Underfull \hbox (badness 10000) in paragraph at lines 902--913
 
-[31]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 902--913
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 902--913
+
+ []
+
+<assets/jasper-logo.png, id=508, 602.25pt x 602.25pt>
+File: assets/jasper-logo.png Graphic file (type png)
+<use assets/jasper-logo.png>
+Package pdftex.def Info: assets/jasper-logo.png  used on input line 921.
+(pdftex.def)             Requested size: 56.9055pt x 56.90189pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 914--923
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 914--923
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 914--923
+
+ []
+
+<assets/mysql-logo.png, id=509, 602.25pt x 371.3875pt>
+File: assets/mysql-logo.png Graphic file (type png)
+<use assets/mysql-logo.png>
+Package pdftex.def Info: assets/mysql-logo.png  used on input line 931.
+(pdftex.def)             Requested size: 56.9055pt x 35.0895pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 924--933
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 924--933
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 924--933
+
+ []
+
+
+
+[29
+
+ <./assets/spring-boot-logo.png> <./assets/jasper-logo.png>]
+<assets/maven-logo.png, id=517, 602.25pt x 142.5325pt>
+File: assets/maven-logo.png Graphic file (type png)
+<use assets/maven-logo.png>
+Package pdftex.def Info: assets/maven-logo.png  used on input line 941.
+(pdftex.def)             Requested size: 56.9055pt x 13.46677pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 934--943
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 934--943
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 934--943
+
+ []
+
+<assets/react-logo.png, id=518, 602.25pt x 282.05376pt>
+File: assets/react-logo.png Graphic file (type png)
+<use assets/react-logo.png>
+Package pdftex.def Info: assets/react-logo.png  used on input line 954.
+(pdftex.def)             Requested size: 56.9055pt x 26.64905pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 945--956
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 945--956
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 945--956
+
+ []
+
+<assets/mui-logo.png, id=519, 602.25pt x 602.25pt>
+File: assets/mui-logo.png Graphic file (type png)
+<use assets/mui-logo.png>
+Package pdftex.def Info: assets/mui-logo.png  used on input line 964.
+(pdftex.def)             Requested size: 56.9055pt x 56.90189pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 957--966
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 957--966
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 957--966
+
+ []
+
+
+
+[30 <./assets/mysql-logo.png> <./assets/maven-logo.png> <./assets/react-logo.png>]
+<assets/axios-logo.png, id=526, 602.25pt x 602.25pt>
+File: assets/axios-logo.png Graphic file (type png)
+<use assets/axios-logo.png>
+Package pdftex.def Info: assets/axios-logo.png  used on input line 974.
+(pdftex.def)             Requested size: 56.9055pt x 56.90189pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 967--976
+
+ []
+
+<assets/intellij-logo.png, id=527, 602.25pt x 451.6875pt>
+File: assets/intellij-logo.png Graphic file (type png)
+<use assets/intellij-logo.png>
+Package pdftex.def Info: assets/intellij-logo.png  used on input line 987.
+(pdftex.def)             Requested size: 56.9055pt x 42.67642pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 978--989
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 978--989
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 978--989
+
+ []
+
+<assets/vscode-logo.png, id=528, 602.25pt x 602.25pt>
+File: assets/vscode-logo.png Graphic file (type png)
+<use assets/vscode-logo.png>
+Package pdftex.def Info: assets/vscode-logo.png  used on input line 997.
+(pdftex.def)             Requested size: 56.9055pt x 56.90189pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 990--999
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 990--999
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 990--999
+
+ []
+
+
+Overfull \hbox (125.08498pt too wide) in paragraph at lines 1009--1060
+ [] 
+ []
+
+
+
+[31 <./assets/mui-logo.png> <./assets/axios-logo.png> <./assets/intellij-logo.png> <./assets/vscode-logo.png>]
+Overfull \vbox (86.60622pt too high) has occurred while \output is active []
+
+
 
 [32]
+Underfull \hbox (badness 10000) in paragraph at lines 1075--1076
+[]\T1/cmr/m/n/12 Update API base URL in \T1/cmtt/m/n/12 src/services/api.js \T1/cmr/m/n/12 if needed (de-faults to
+ []
+
+
 
 [33]
 
 [34]
+<./assets/se connecter.png, id=546, 1155.1155pt x 584.1825pt>
+File: ./assets/se connecter.png Graphic file (type png)
+<use ./assets/se connecter.png>
+Package pdftex.def Info: ./assets/se connecter.png  used on input line 1127.
+(pdftex.def)             Requested size: 398.3401pt x 201.45403pt.
+<./assets/s'inscrire.png, id=547, 1155.1155pt x 575.751pt>
+File: ./assets/s'inscrire.png Graphic file (type png)
+<use ./assets/s'inscrire.png>
+Package pdftex.def Info: ./assets/s'inscrire.png  used on input line 1134.
+(pdftex.def)             Requested size: 398.3401pt x 198.54646pt.
 
-[35]
 
-[36]
+[35 <./assets/se connecter.png>]
+<./assets/tableau de bord Hr.png, id=553, 1155.1155pt x 581.7735pt>
+File: ./assets/tableau de bord Hr.png Graphic file (type png)
+<use ./assets/tableau de bord Hr.png>
+Package pdftex.def Info: ./assets/tableau de bord Hr.png  used on input line 1144.
+(pdftex.def)             Requested size: 473.02556pt x 238.23573pt.
+<./assets/liste des employes.png, id=554, 1155.1155pt x 581.7735pt>
+File: ./assets/liste des employes.png Graphic file (type png)
+<use ./assets/liste des employes.png>
+Package pdftex.def Info: ./assets/liste des employes.png  used on input line 1151.
+(pdftex.def)             Requested size: 473.02556pt x 238.23573pt.
 
-[37]
 
-[38]
+[36 <./assets/s'inscrire.png> <./assets/tableau de bord Hr.png>]
+<./assets/form d'ajout des employes.png, id=560, 1155.1155pt x 579.3645pt>
+File: ./assets/form d'ajout des employes.png Graphic file (type png)
+<use ./assets/form d'ajout des employes.png>
+Package pdftex.def Info: ./assets/form d'ajout des employes.png  used on input line 1158.
+(pdftex.def)             Requested size: 473.02556pt x 237.24925pt.
+<./assets/gestion des attestations .png, id=561, 1155.1155pt x 582.37575pt>
+File: ./assets/gestion des attestations .png Graphic file (type png)
+<use ./assets/gestion des attestations .png>
+Package pdftex.def Info: ./assets/gestion des attestations .png  used on input line 1168.
+(pdftex.def)             Requested size: 473.02556pt x 238.48235pt.
 
-[39]
-Underfull \hbox (badness 10000) in paragraph at lines 1524--1525
+
+[37 <./assets/liste des employes.png> <./assets/form d'ajout des employes.png>]
+<./assets/type d'attestation.png, id=567, 1103.322pt x 384.2355pt>
+File: ./assets/type d'attestation.png Graphic file (type png)
+<use ./assets/type d'attestation.png>
+Package pdftex.def Info: ./assets/type d'attestation.png  used on input line 1175.
+(pdftex.def)             Requested size: 473.02556pt x 164.73141pt.
+<./assets/generation des attestation salaire 1.png, id=568, 1103.322pt x 386.6445pt>
+File: ./assets/generation des attestation salaire 1.png Graphic file (type png)
+<use ./assets/generation des attestation salaire 1.png>
+Package pdftex.def Info: ./assets/generation des attestation salaire 1.png  used on input line 1182.
+(pdftex.def)             Requested size: 473.02556pt x 165.7642pt.
+
+
+[38 <./assets/gestion des attestations .png> <./assets/type d'attestation.png>]
+<./assets/liste des attestations.png, id=574, 1155.1155pt x 581.17125pt>
+File: ./assets/liste des attestations.png Graphic file (type png)
+<use ./assets/liste des attestations.png>
+Package pdftex.def Info: ./assets/liste des attestations.png  used on input line 1189.
+(pdftex.def)             Requested size: 473.02556pt x 237.9891pt.
+<./assets/panel admin.png, id=575, 1155.1155pt x 579.96675pt>
+File: ./assets/panel admin.png Graphic file (type png)
+<use ./assets/panel admin.png>
+Package pdftex.def Info: ./assets/panel admin.png  used on input line 1199.
+(pdftex.def)             Requested size: 473.02556pt x 237.49586pt.
+
+
+[39 <./assets/generation des attestation salaire 1.png> <./assets/liste des attestations.png>]
+<./assets/mon profil rh.png, id=581, 1155.1155pt x 579.3645pt>
+File: ./assets/mon profil rh.png Graphic file (type png)
+<use ./assets/mon profil rh.png>
+Package pdftex.def Info: ./assets/mon profil rh.png  used on input line 1206.
+(pdftex.def)             Requested size: 473.02556pt x 237.24925pt.
+<./assets/modification de profile claire mode.png, id=582, 1155.1155pt x 552.8655pt>
+File: ./assets/modification de profile claire mode.png Graphic file (type png)
+<use ./assets/modification de profile claire mode.png>
+Package pdftex.def Info: ./assets/modification de profile claire mode.png  used on input line 1213.
+(pdftex.def)             Requested size: 473.02556pt x 226.39792pt.
+
+
+[40 <./assets/panel admin.png> <./assets/mon profil rh.png>]
+
+[41 <./assets/modification de profile claire mode.png>]
+
+[42]
+Underfull \hbox (badness 10000) in paragraph at lines 1270--1271
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1526--1527
+Underfull \hbox (badness 10000) in paragraph at lines 1272--1273
 
  []
 
 
 
-[40]
+[43
 
-[41]
-Underfull \hbox (badness 3536) in paragraph at lines 1573--1574
+]
+
+[44]
+Underfull \hbox (badness 3536) in paragraph at lines 1319--1320
 []\T1/cmr/m/n/14.4 Official Spring Boot Doc-u-men-ta-tion. [][]$\T1/cmtt/m/n/14.4 https : / / spring . io / projects /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1575--1576
+Underfull \hbox (badness 10000) in paragraph at lines 1321--1322
 []\T1/cmr/m/n/14.4 JasperReports Guide. [][]$\T1/cmtt/m/n/14.4 https : / / community . jaspersoft . com /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1581--1582
+Underfull \hbox (badness 10000) in paragraph at lines 1327--1328
 []\T1/cmr/m/n/14.4 React Test-ing Li-brary. [][]$\T1/cmtt/m/n/14.4 https : / / testing-[]library . com / docs /
  []
 
 
 
-[42] (rapportGestionSalaires.aux)
+[45] (rapportGestionSalaires.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
  ***********
 Package rerunfilecheck Info: File `rapportGestionSalaires.out' has not changed.
-(rerunfilecheck)             Checksum: 1E396E0224205CB5BD7060C0C0E647A7;8693.
+(rerunfilecheck)             Checksum: 3E2587CC61953AECA10E37DFDBB4FFF3;10560.
  ) 
 Here is how much of TeX's memory you used:
- 32502 strings out of 468130
- 617406 string characters out of 5430633
- 1416585 words of memory out of 5000000
- 60038 multiletter control sequences out of 15000+600000
- 646308 words of font info for 79 fonts, out of 8000000 for 9000
+ 31398 strings out of 468130
+ 607397 string characters out of 5430633
+ 1031362 words of memory out of 5000000
+ 59352 multiletter control sequences out of 15000+600000
+ 643008 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,12n,131p,652b,2216s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1440.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1095.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1440.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1440.pk>
-Output written on rapportGestionSalaires.pdf (50 pages, 528249 bytes).
+ 84i,12n,131p,649b,894s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1440.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1440.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\aniac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1440.pk>
+Output written on rapportGestionSalaires.pdf (53 pages, 4861872 bytes).
 PDF statistics:
- 1681 PDF objects out of 1728 (max. 8388607)
- 498 named destinations out of 1000 (max. 500000)
- 444 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1235 PDF objects out of 1440 (max. 8388607)
+ 100 named destinations out of 1000 (max. 500000)
+ 661 words of extra memory for PDF output out of 10000 (max. 10000000)
 

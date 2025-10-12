@@ -23,7 +23,7 @@ public class AttestationTemplate {
     private String name; // uppercase
     
     @Lob
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "LONGTEXT")
     private String jrxml;
     
     @Column(nullable = false)

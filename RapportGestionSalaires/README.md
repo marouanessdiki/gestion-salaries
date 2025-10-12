@@ -1,78 +1,86 @@
-# Rapport de Projet - Système de Gestion des Salaires
+﻿# Rapport de Projet - SystÃ¨me de Gestion des Salaires
 
-## 📋 Description
+## ðŸ“‹ Description
 
-Ce dossier contient le rapport LaTeX complet pour le projet de système de gestion des salaires et attestations RH développé chez Digital Data Service.
+Ce dossier contient le rapport LaTeX complet pour le projet de systÃ¨me de gestion des salaires et attestations RH dÃ©veloppÃ© chez Digital Data Service.
 
-## 🚀 Compilation
+## ðŸš€ Compilation
 
-### Prérequis
-- Distribution LaTeX complète (TeX Live, MiKTeX, ou MacTeX)
-- Éditeur LaTeX (TeXstudio, Overleaf, ou VS Code avec extension LaTeX)
+### PrÃ©requis
+- Distribution LaTeX complÃ¨te (TeX Live, MiKTeX, ou MacTeX)
+- Ã‰diteur LaTeX (TeXstudio, Overleaf, ou VS Code avec extension LaTeX)
 
 ### Instructions de compilation
 
 1. **Via ligne de commande :**
 ```bash
 pdflatex rapportGestionSalaires.tex
-pdflatex rapportGestionSalaires.tex  # Seconde compilation pour les références
+pdflatex rapportGestionSalaires.tex  # Seconde compilation pour les rÃ©fÃ©rences
 ```
 
-2. **Via éditeur LaTeX :**
-   - Ouvrir `rapportGestionSalaires.tex` dans votre éditeur
-   - Compiler avec pdfLaTeX (généralement F5 ou bouton Build)
+2. **Via Ã©diteur LaTeX :**
+   - Ouvrir `rapportGestionSalaires.tex` dans votre Ã©diteur
+   - Compiler avec pdfLaTeX (gÃ©nÃ©ralement F5 ou bouton Build)
 
-### Fichiers générés
+### Fichiers gÃ©nÃ©rÃ©s
 - `rapportGestionSalaires.pdf` - Le rapport final
-- Fichiers auxiliaires (.aux, .toc, .lof, etc.) - Peuvent être supprimés après compilation
+- Fichiers auxiliaires (.aux, .toc, .lof, etc.) - Peuvent Ãªtre supprimÃ©s aprÃ¨s compilation
 
-## 📁 Structure
+## ðŸ“ Structure
 
 ```
 RapportGestionSalaires/
-├── rapportGestionSalaires.tex    # Fichier LaTeX principal
-├── assets/                       # Images et logos
-│   ├── ensias.png               # Logo ENSIAS
-│   ├── um5.png                  # Logo UM5
-│   ├── DDS.png                  # Logo Digital Data Service
-│   └── [autres logos...]        # Logos des technologies
-└── README.md                    # Ce fichier
+â”œâ”€â”€ rapportGestionSalaires.tex    # Fichier LaTeX principal
+â”œâ”€â”€ assets/                       # Images et logos
+â”‚   â”œâ”€â”€ ensias.png               # Logo ENSIAS
+â”‚   â”œâ”€â”€ um5.png                  # Logo UM5
+â”‚   â”œâ”€â”€ DDS.png                  # Logo Digital Data Service
+â”‚   â””â”€â”€ [autres logos...]        # Logos des technologies
+â””â”€â”€ README.md                    # Ce fichier
 ```
 
-## 🎯 Contenu du Rapport
+## ðŸŽ¯ Contenu du Rapport
 
-Le rapport est structuré en 4 chapitres principaux :
+Le rapport est structurÃ© en 4 chapitres principaux :
 
-1. **Contexte Général du Projet** - Présentation de l'environnement et de la problématique
-2. **Analyse des Besoins** - Spécification des exigences fonctionnelles et non-fonctionnelles
-3. **Conception et Architecture** - Modélisation et architecture du système
-4. **Implémentation** - Détails techniques et résultats
+1. **Contexte GÃ©nÃ©ral du Projet** - PrÃ©sentation de l'environnement et de la problÃ©matique
+2. **Analyse des Besoins** - SpÃ©cification des exigences fonctionnelles et non-fonctionnelles
+3. **Conception et Architecture** - ModÃ©lisation et architecture du systÃ¨me
+4. **ImplÃ©mentation** - DÃ©tails techniques et rÃ©sultats
 
-## 📝 Notes importantes
+## ðŸ“ Notes importantes
 
-- Les logos des technologies (Spring Boot, React, MySQL, etc.) doivent être téléchargés séparément depuis leurs sites officiels
+- Les logos des technologies (Spring Boot, React, MySQL, etc.) doivent Ãªtre tÃ©lÃ©chargÃ©s sÃ©parÃ©ment depuis leurs sites officiels
 - Le rapport utilise des packages LaTeX standards disponibles dans la plupart des distributions
-- La compilation peut nécessiter 2 passes pour générer correctement la table des matières et les références
+- La compilation peut nÃ©cessiter 2 passes pour gÃ©nÃ©rer correctement la table des matiÃ¨res et les rÃ©fÃ©rences
 
-## 🔧 Personnalisation
+## ðŸ”§ Personnalisation
 
-Pour adapter ce rapport à votre projet :
+Pour adapter ce rapport Ã  votre projet :
 
 1. Modifier les informations personnelles dans la page de titre
-2. Adapter le contenu des chapitres selon votre implémentation
-3. Ajouter vos propres captures d'écran dans le dossier assets/
-4. Mettre à jour la bibliographie avec vos sources
+2. Adapter le contenu des chapitres selon votre implÃ©mentation
+3. Ajouter vos propres captures d'Ã©cran dans le dossier assets/
+4. Mettre Ã  jour la bibliographie avec vos sources
 
-## 📊 Statistiques
+## ðŸ“Š Statistiques
 
 - **Pages** : ~50-60 pages
 - **Chapitres** : 4 + Introduction/Conclusion
-- **Figures** : Diagrammes d'architecture et captures d'écran
-- **Code** : Extraits de code avec syntaxe colorée
+- **Figures** : Diagrammes d'architecture et captures d'Ã©cran
+- **Code** : Extraits de code avec syntaxe colorÃ©e
 
 ---
 
 **Auteur** : TAMASNA Anouar  
-**Projet** : Système de Gestion des Salaires  
-**Institution** : ENSIAS - École Nationale Supérieure d'Informatique et d'Analyse des Systèmes  
-**Année** : 2024-2025
+**Projet** : SystÃ¨me de Gestion des Salaires  
+**Institution** : ENSIAS - Ã‰cole Nationale SupÃ©rieure d'Informatique et d'Analyse des SystÃ¨mes  
+**AnnÃ©e** : 2024-2025
+
+## Diagrams as Code (Mermaid / Eraser)
+
+Des versions « diagrammes en code » ont été ajoutées dans RapportGestionSalaires/diagrams/.
+
+- Ouvrez un fichier .mmd, copiez le contenu et collez-le dans un diagramme Mermaid sur eraser.io, ou utilisez tout autre moteur Mermaid.
+- Fichiers fournis: use-case, sequences (attestation/employés), class-model, workflow-attestation, architecture (backend/frontend), waterfall.
+

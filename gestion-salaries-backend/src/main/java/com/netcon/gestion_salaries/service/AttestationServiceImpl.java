@@ -196,8 +196,8 @@ public class AttestationServiceImpl implements IAttestationService {
             // Use new dynamic template loading - no more hardcoded switches
             log.info("Loading Jasper template for type: {}", type);
             
-            // Map legacy type names to new template names
-            String templateName = mapLegacyTypeToTemplateName(type);
+            // Use the type directly as template name (sent from frontend)
+            String templateName = type;
             
             // Use the new generateAttestation method for consistency
             Map<String, Object> parameters = new HashMap<>();

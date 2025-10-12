@@ -34,7 +34,9 @@ import {
     Fade,
     Zoom,
     Tooltip,
-    Autocomplete
+    Autocomplete,
+    Alert,
+    Snackbar
 } from '@mui/material';
 import DownloadIcon from '@mui/icons-material/Download';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -58,7 +60,7 @@ const AttestationPage = () => {
     const [employes, setEmployes] = useState([]);
     const [attestations, setAttestations] = useState([]);
     const [selected, setSelected] = useState("");
-    const [type, setType] = useState("Attestation Salaire");
+    const [type, setType] = useState("");
     const [generating, setGenerating] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [sortBy, setSortBy] = useState('dateGeneration');
@@ -66,6 +68,37 @@ const AttestationPage = () => {
     const [filterByType, setFilterByType] = useState('all');
     const [dateOrder, setDateOrder] = useState('new-to-old');
     const [employeeSearchTerm, setEmployeeSearchTerm] = useState('');
+    const [notification, setNotification] = useState({ open: false, message: '', severity: 'success' });
+    const [attestationTypes, setAttestationTypes] = useState([]);
+    const [loadingTypes, setLoadingTypes] = useState(false);
+
+    // Notification functions
+    const showNotification = (message, severity = 'success') => {
+        setNotification({ open: true, message, severity });
+    };
+
+    const closeNotification = () => {
+        setNotification({ ...notification, open: false });
+    };
+
+    // Load attestation types from admin-created templates
+    const loadAttestationTypes = async () => {
+        setLoadingTypes(true);
+        try {
+            const res = await api.get('/parametres/parametrage/attestations/types');
+            setAttestationTypes(res.data);
+
+            // Set the first available type as default if none selected
+            if (res.data.length > 0 && (!type || type === "")) {
+                setType(res.data[0].value);
+            }
+        } catch (err) {
+            console.error('Error loading attestation types:', err);
+            showNotification('Erreur lors du chargement des types d\'attestation', 'error');
+        } finally {
+            setLoadingTypes(false);
+        }
+    };
 
     // Helper to render employee label using name when available
     const getEmployeLabel = (employeId) => {
@@ -97,7 +130,7 @@ const AttestationPage = () => {
         setSortBy(field);
     };
 
-    // Get unique attestation types for filter dropdown
+    // Get unique attestation types for filter dropdown (from generated attestations)
     const uniqueTypes = useMemo(() => {
         if (!Array.isArray(attestations)) return [];
         const types = [...new Set(attestations.map(att => att.typeAttestation))];
@@ -162,6 +195,7 @@ const AttestationPage = () => {
     useEffect(() => {
         api.get("/employes").then((res) => setEmployes(res.data));
         loadAttestations();
+        loadAttestationTypes();
     }, []);
 
     const loadAttestations = () => {
@@ -172,9 +206,17 @@ const AttestationPage = () => {
 
     const generateAttestation = () => {
         if (!selected) {
-            alert("Veuillez sélectionner un employé");
+            showNotification("Veuillez sélectionner un employé", 'warning');
             return;
         }
+
+        const selectedEmployee = getSelectedEmployee();
+        const employeeName = selectedEmployee ? `${selectedEmployee.nom} ${selectedEmployee.prenom}` : 'Employé';
+
+        // Get the display name for the notification
+        const selectedType = attestationTypes.find(t => t.value === type);
+        const typeDisplayName = selectedType ? selectedType.label : type;
+
         setGenerating(true);
         api.post("/attestations", {
             employeId: selected,
@@ -182,15 +224,15 @@ const AttestationPage = () => {
         })
             .then(() => {
                 loadAttestations();
-                setSelected("");
-                setType("Attestation Salaire");
-                setEmployeeSearchTerm("");
+                showNotification(`Attestation ${typeDisplayName} générée avec succès pour ${employeeName}`, 'success');
             })
             .catch((err) => {
                 console.error(err);
-                alert("Erreur lors de la génération de l'attestation");
+                showNotification("Erreur lors de la génération de l'attestation", 'error');
             })
-            .finally(() => setGenerating(false));
+            .finally(() => {
+                setGenerating(false);
+            });
     };
 
     const handleClearSelection = () => {
@@ -203,24 +245,42 @@ const AttestationPage = () => {
             api.delete(`/attestations/${id}`)
                 .then(() => {
                     loadAttestations();
+                    showNotification("Attestation supprimée avec succès", 'success');
                 })
                 .catch((err) => {
                     console.error(err);
-                    alert("Erreur lors de la suppression");
+                    showNotification("Erreur lors de la suppression", 'error');
                 });
         }
     };
 
-    // Get attestation type color
-    const getTypeColor = (type) => {
-        switch (type) {
-            case 'Attestation Salaire': return 'primary';
-            case 'Attestation Travail': return 'success';
-            case 'Attestation Titularisation': return 'info';
-            case 'Avenant Augmentation Salaire': return 'warning';
-            case 'Engagement Versement Salaire': return 'error';
-            default: return 'default';
+    // Get attestation type color - ensure each type gets a unique color
+    const getTypeColor = (typeLabel, typeValue) => {
+        if (!typeLabel) return 'default';
+
+        // Define a palette of distinct colors
+        const colors = ['primary', 'secondary', 'success', 'warning', 'error', 'info'];
+
+        // Use content-based assignment for consistent colors
+        const typeLower = typeLabel.toLowerCase();
+        const valueLower = typeValue ? typeValue.toLowerCase() : '';
+
+        if (typeLower.includes('salaire') || valueLower.includes('salaire')) return 'primary';
+        if (typeLower.includes('travail') || valueLower.includes('travail')) return 'success';
+        if (typeLower.includes('titularisation') || valueLower.includes('titularisation')) return 'info';
+        if (typeLower.includes('avenant') || typeLower.includes('augmentation') ||
+            valueLower.includes('avenant') || valueLower.includes('augmentation')) return 'warning';
+        if (typeLower.includes('engagement') || typeLower.includes('versement') ||
+            valueLower.includes('engagement') || valueLower.includes('versement')) return 'error';
+
+        // Fallback: use hash of the label to ensure consistent colors
+        let hash = 0;
+        for (let i = 0; i < typeLabel.length; i++) {
+            const char = typeLabel.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            hash = hash & hash; // Convert to 32-bit integer
         }
+        return colors[Math.abs(hash) % colors.length];
     };
 
     return (
@@ -560,21 +620,27 @@ const AttestationPage = () => {
                                             }
                                         }}
                                     >
-                                        <MenuItem value="Attestation Salaire">
-                                            <Chip label="Attestation Salaire" color="primary" size="small" />
-                                        </MenuItem>
-                                        <MenuItem value="Attestation Travail">
-                                            <Chip label="Attestation Travail" color="success" size="small" />
-                                        </MenuItem>
-                                        <MenuItem value="Attestation Titularisation">
-                                            <Chip label="Attestation Titularisation" color="info" size="small" />
-                                        </MenuItem>
-                                        <MenuItem value="Avenant Augmentation Salaire">
-                                            <Chip label="Avenant Augmentation Salaire" color="warning" size="small" />
-                                        </MenuItem>
-                                        <MenuItem value="Engagement Versement Salaire">
-                                            <Chip label="Engagement Versement Salaire" color="error" size="small" />
-                                        </MenuItem>
+                                        {loadingTypes ? (
+                                            <MenuItem disabled>
+                                                <Typography>Chargement des types...</Typography>
+                                            </MenuItem>
+                                        ) : attestationTypes.length === 0 ? (
+                                            <MenuItem disabled>
+                                                <Typography color="text.secondary">
+                                                    Aucun type d'attestation disponible
+                                                </Typography>
+                                            </MenuItem>
+                                        ) : (
+                                            attestationTypes.map((attestationType, index) => (
+                                                <MenuItem key={attestationType.id} value={attestationType.value}>
+                                                    <Chip
+                                                        label={attestationType.label}
+                                                        color={getTypeColor(attestationType.label, attestationType.value)}
+                                                        size="small"
+                                                    />
+                                                </MenuItem>
+                                            ))
+                                        )}
                                     </Select>
                                 </FormControl>
                             </Grid>
@@ -1077,6 +1143,23 @@ const AttestationPage = () => {
                     </TableContainer>
                 </Card>
             </Fade>
+
+            {/* Notification Snackbar */}
+            <Snackbar
+                open={notification.open}
+                autoHideDuration={6000}
+                onClose={closeNotification}
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            >
+                <Alert
+                    onClose={closeNotification}
+                    severity={notification.severity}
+                    variant="filled"
+                    sx={{ width: '100%' }}
+                >
+                    {notification.message}
+                </Alert>
+            </Snackbar>
         </Container>
     );
 };

@@ -28,10 +28,6 @@ INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex\latex\base\fontenc.sty
 INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecrm1200.tfm
 INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex\latex\fancybox\fancybox.sty
 INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex\latex\fancybox\fancybox.sty
-INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex\latex\a4wide\a4wide.sty
-INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex\latex\a4wide\a4wide.sty
-INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex\latex\ntgclass\a4.sty
-INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex\latex\ntgclass\a4.sty
 INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex\latex\graphics\graphicx.sty
 INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex\latex\graphics\graphicx.sty
 INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex\latex\graphics\keyval.sty
@@ -435,21 +431,201 @@ INPUT .\assets\logo.png
 INPUT .\assets\logo.png
 INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\tcrm1200.tfm
 INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecti1200.tfm
-INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecrm1095.tfm
-INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecti1095.tfm
-INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
-INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
-INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
-INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
-INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
-INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
+INPUT .\assets\diagramme-gantt-netcon.png
+INPUT .\assets\diagramme-gantt-netcon.png
+INPUT .\assets\diagramme-gantt-netcon.png
+INPUT .\assets\diagramme-gantt-netcon.png
+INPUT .\assets\diagramme-gantt-netcon.png
+INPUT .\assets\diagramme-gantt-netcon.png
+INPUT .\assets\diagramme-gantt-netcon.png
+INPUT .\assets\waterfall-diagramme.png
+INPUT .\assets\waterfall-diagramme.png
+INPUT .\assets\waterfall-diagramme.png
+INPUT .\assets\waterfall-diagramme.png
+INPUT .\assets\waterfall-diagramme.png
+INPUT .\assets\waterfall-diagramme.png
+INPUT .\assets\waterfall-diagramme.png
+INPUT .\assets\diagramme use cas.png
+INPUT .\assets\diagramme use cas.png
+INPUT .\assets\diagramme use cas.png
+INPUT .\assets\diagramme use cas.png
+INPUT .\assets\diagramme use cas.png
+INPUT .\assets\diagramme use cas.png
+INPUT .\assets\diagramme use cas.png
+INPUT .\assets\Génération d'attestation diagramme de sequence.png
+INPUT .\assets\Génération d'attestation diagramme de sequence.png
+INPUT .\assets\Génération d'attestation diagramme de sequence.png
+INPUT .\assets\Génération d'attestation diagramme de sequence.png
+INPUT .\assets\Génération d'attestation diagramme de sequence.png
+INPUT .\assets\Génération d'attestation diagramme de sequence.png
+INPUT .\assets\Génération d'attestation diagramme de sequence.png
+INPUT .\assets\Gestion des employés 1.png
+INPUT .\assets\Gestion des employés 1.png
+INPUT .\assets\Gestion des employés 1.png
+INPUT .\assets\Gestion des employés 1.png
+INPUT .\assets\Gestion des employés 1.png
+INPUT .\assets\Gestion des employés 1.png
+INPUT .\assets\Gestion des employés 1.png
+INPUT .\assets\Gestion des employés 2.png
+INPUT .\assets\Gestion des employés 2.png
+INPUT .\assets\Gestion des employés 2.png
+INPUT .\assets\Gestion des employés 2.png
+INPUT .\assets\Gestion des employés 2.png
+INPUT .\assets\Gestion des employés 2.png
+INPUT .\assets\Gestion des employés 2.png
+INPUT .\assets\diagrammes-des-classes-netcon.png
+INPUT .\assets\diagrammes-des-classes-netcon.png
+INPUT .\assets\diagrammes-des-classes-netcon.png
+INPUT .\assets\diagrammes-des-classes-netcon.png
+INPUT .\assets\diagrammes-des-classes-netcon.png
+INPUT .\assets\diagrammes-des-classes-netcon.png
+INPUT .\assets\diagrammes-des-classes-netcon.png
+INPUT .\assets\backend layer archi (springboot).png
+INPUT .\assets\backend layer archi (springboot).png
+INPUT .\assets\backend layer archi (springboot).png
+INPUT .\assets\backend layer archi (springboot).png
+INPUT .\assets\backend layer archi (springboot).png
+INPUT .\assets\backend layer archi (springboot).png
+INPUT .\assets\backend layer archi (springboot).png
+INPUT .\assets\spring-boot-logo.png
+INPUT .\assets\spring-boot-logo.png
+INPUT .\assets\spring-boot-logo.png
+INPUT .\assets\spring-boot-logo.png
+INPUT .\assets\spring-boot-logo.png
+INPUT .\assets\spring-boot-logo.png
+INPUT .\assets\jasper-logo.png
+INPUT .\assets\jasper-logo.png
+INPUT .\assets\jasper-logo.png
+INPUT .\assets\jasper-logo.png
+INPUT .\assets\jasper-logo.png
+INPUT .\assets\jasper-logo.png
+INPUT .\assets\mysql-logo.png
+INPUT .\assets\mysql-logo.png
+INPUT .\assets\mysql-logo.png
+INPUT .\assets\mysql-logo.png
+INPUT .\assets\mysql-logo.png
+INPUT .\assets\mysql-logo.png
+INPUT .\assets\maven-logo.png
+INPUT .\assets\maven-logo.png
+INPUT .\assets\maven-logo.png
+INPUT .\assets\maven-logo.png
+INPUT .\assets\maven-logo.png
+INPUT .\assets\maven-logo.png
+INPUT .\assets\react-logo.png
+INPUT .\assets\react-logo.png
+INPUT .\assets\react-logo.png
+INPUT .\assets\react-logo.png
+INPUT .\assets\react-logo.png
+INPUT .\assets\react-logo.png
+INPUT .\assets\mui-logo.png
+INPUT .\assets\mui-logo.png
+INPUT .\assets\mui-logo.png
+INPUT .\assets\mui-logo.png
+INPUT .\assets\mui-logo.png
+INPUT .\assets\mui-logo.png
+INPUT .\assets\axios-logo.png
+INPUT .\assets\axios-logo.png
+INPUT .\assets\axios-logo.png
+INPUT .\assets\axios-logo.png
+INPUT .\assets\axios-logo.png
+INPUT .\assets\axios-logo.png
+INPUT .\assets\intellij-logo.png
+INPUT .\assets\intellij-logo.png
+INPUT .\assets\intellij-logo.png
+INPUT .\assets\intellij-logo.png
+INPUT .\assets\intellij-logo.png
+INPUT .\assets\intellij-logo.png
+INPUT .\assets\vscode-logo.png
+INPUT .\assets\vscode-logo.png
+INPUT .\assets\vscode-logo.png
+INPUT .\assets\vscode-logo.png
+INPUT .\assets\vscode-logo.png
+INPUT .\assets\vscode-logo.png
 INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ectt1200.tfm
-INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ectt1000.tfm
-INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecrm1000.tfm
-INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecrm0600.tfm
-INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
-INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
-INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
+INPUT .\assets\se connecter.png
+INPUT .\assets\se connecter.png
+INPUT .\assets\se connecter.png
+INPUT .\assets\se connecter.png
+INPUT .\assets\se connecter.png
+INPUT .\assets\se connecter.png
+INPUT .\assets\se connecter.png
+INPUT .\assets\s'inscrire.png
+INPUT .\assets\s'inscrire.png
+INPUT .\assets\s'inscrire.png
+INPUT .\assets\s'inscrire.png
+INPUT .\assets\s'inscrire.png
+INPUT .\assets\s'inscrire.png
+INPUT .\assets\s'inscrire.png
+INPUT .\assets\tableau de bord Hr.png
+INPUT .\assets\tableau de bord Hr.png
+INPUT .\assets\tableau de bord Hr.png
+INPUT .\assets\tableau de bord Hr.png
+INPUT .\assets\tableau de bord Hr.png
+INPUT .\assets\tableau de bord Hr.png
+INPUT .\assets\tableau de bord Hr.png
+INPUT .\assets\liste des employes.png
+INPUT .\assets\liste des employes.png
+INPUT .\assets\liste des employes.png
+INPUT .\assets\liste des employes.png
+INPUT .\assets\liste des employes.png
+INPUT .\assets\liste des employes.png
+INPUT .\assets\liste des employes.png
+INPUT .\assets\form d'ajout des employes.png
+INPUT .\assets\form d'ajout des employes.png
+INPUT .\assets\form d'ajout des employes.png
+INPUT .\assets\form d'ajout des employes.png
+INPUT .\assets\form d'ajout des employes.png
+INPUT .\assets\form d'ajout des employes.png
+INPUT .\assets\form d'ajout des employes.png
+INPUT .\assets\gestion des attestations .png
+INPUT .\assets\gestion des attestations .png
+INPUT .\assets\gestion des attestations .png
+INPUT .\assets\gestion des attestations .png
+INPUT .\assets\gestion des attestations .png
+INPUT .\assets\gestion des attestations .png
+INPUT .\assets\gestion des attestations .png
+INPUT .\assets\type d'attestation.png
+INPUT .\assets\type d'attestation.png
+INPUT .\assets\type d'attestation.png
+INPUT .\assets\type d'attestation.png
+INPUT .\assets\type d'attestation.png
+INPUT .\assets\type d'attestation.png
+INPUT .\assets\type d'attestation.png
+INPUT .\assets\generation des attestation salaire 1.png
+INPUT .\assets\generation des attestation salaire 1.png
+INPUT .\assets\generation des attestation salaire 1.png
+INPUT .\assets\generation des attestation salaire 1.png
+INPUT .\assets\generation des attestation salaire 1.png
+INPUT .\assets\generation des attestation salaire 1.png
+INPUT .\assets\generation des attestation salaire 1.png
+INPUT .\assets\liste des attestations.png
+INPUT .\assets\liste des attestations.png
+INPUT .\assets\liste des attestations.png
+INPUT .\assets\liste des attestations.png
+INPUT .\assets\liste des attestations.png
+INPUT .\assets\liste des attestations.png
+INPUT .\assets\liste des attestations.png
+INPUT .\assets\panel admin.png
+INPUT .\assets\panel admin.png
+INPUT .\assets\panel admin.png
+INPUT .\assets\panel admin.png
+INPUT .\assets\panel admin.png
+INPUT .\assets\panel admin.png
+INPUT .\assets\panel admin.png
+INPUT .\assets\mon profil rh.png
+INPUT .\assets\mon profil rh.png
+INPUT .\assets\mon profil rh.png
+INPUT .\assets\mon profil rh.png
+INPUT .\assets\mon profil rh.png
+INPUT .\assets\mon profil rh.png
+INPUT .\assets\mon profil rh.png
+INPUT .\assets\modification de profile claire mode.png
+INPUT .\assets\modification de profile claire mode.png
+INPUT .\assets\modification de profile claire mode.png
+INPUT .\assets\modification de profile claire mode.png
+INPUT .\assets\modification de profile claire mode.png
+INPUT .\assets\modification de profile claire mode.png
+INPUT .\assets\modification de profile claire mode.png
 INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ectt1440.tfm
 INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
 INPUT C:\Users\aniac\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi12.tfm
@@ -461,12 +637,8 @@ INPUT .\rapportGestionSalaires.out
 INPUT .\rapportGestionSalaires.out
 INPUT C:\Users\aniac\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1440.pk
 INPUT C:\Users\aniac\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1440.pk
-INPUT C:\Users\aniac\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1000.pk
-INPUT C:\Users\aniac\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1000.pk
-INPUT C:\Users\aniac\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0600.pk
-INPUT C:\Users\aniac\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0600.pk
-INPUT C:\Users\aniac\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1095.pk
-INPUT C:\Users\aniac\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1095.pk
+INPUT C:\Users\aniac\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1200.pk
+INPUT C:\Users\aniac\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1200.pk
 INPUT C:\Users\aniac\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1200.pk
 INPUT C:\Users\aniac\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1200.pk
 INPUT C:\Users\aniac\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1200.pk

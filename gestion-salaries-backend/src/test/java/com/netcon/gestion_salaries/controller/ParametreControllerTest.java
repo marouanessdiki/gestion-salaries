@@ -37,9 +37,9 @@ class ParametreControllerTest {
     @Test
     void testGetAttestationTypes() throws Exception {
         List<AttestationTypeResponse> responses = List.of(
-            new AttestationTypeResponse(5L, "ATTESTATION", "TRAVAIL", "Attestation Travail"),
-            new AttestationTypeResponse(6L, "ATTESTATION", "SALAIRE", "Attestation Salaire"),
-            new AttestationTypeResponse(7L, "ATTESTATION", "TITULARISATION", "Attestation Titularisation")
+            new AttestationTypeResponse(5L, "ATTESTATION", "TRAVAIL", "Attestation Travail", "<jasperReport>travail</jasperReport>"),
+            new AttestationTypeResponse(6L, "ATTESTATION", "SALAIRE", "Attestation Salaire", "<jasperReport>salaire</jasperReport>"),
+            new AttestationTypeResponse(7L, "ATTESTATION", "TITULARISATION", "Attestation Titularisation", "<jasperReport>titularisation</jasperReport>")
         );
         
         when(attestationTemplateService.getAllTypes()).thenReturn(responses);
@@ -61,7 +61,7 @@ class ParametreControllerTest {
         );
         
         AttestationTypeResponse response = new AttestationTypeResponse(
-            1L, "ATTESTATION", "SALAIRE", "Attestation Salaire"
+            1L, "ATTESTATION", "SALAIRE", "Attestation Salaire", "<jasperReport>salaire</jasperReport>"
         );
         
         when(attestationTemplateService.createOrUpdate(any(AttestationTypeRequest.class)))

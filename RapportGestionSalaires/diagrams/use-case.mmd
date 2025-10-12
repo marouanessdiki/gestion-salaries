@@ -1,0 +1,30 @@
+%% Mermaid Use Case-style diagram via flowchart
+%% Paste into eraser.io or any Mermaid renderer
+flowchart LR
+  %% Actors
+  HR([HR User])
+  Admin([Administrator])
+
+  %% System boundary (visual grouping)
+  subgraph System[Salary & HR Attestation System]
+    UC1[[Manage Employees]]
+    UC2[[Generate Attestation]]
+    UC3[[Download Attestation]]
+    UC4[[Manage Templates (JRXML)]]
+    UC5[[Login / Signup]]
+    UC6[[Approve HR Accounts]]
+  end
+
+  %% Relations
+  HR --> UC1
+  HR --> UC2
+  HR --> UC3
+  HR --> UC5
+  Admin --> UC4
+  Admin --> UC6
+  Admin --> UC5
+
+  %% Notes
+  note right of UC4: DB-backed JRXML templates
+  note right of UC2: JasperReports PDF generation
+

@@ -27,7 +27,6 @@ import {
     useTheme,
     alpha,
     Fade,
-    Zoom,
     Tooltip,
     Badge
 } from '@mui/material';
@@ -38,7 +37,6 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import SearchIcon from '@mui/icons-material/Search';
 import FilterListIcon from '@mui/icons-material/FilterList';
-import DashboardIcon from '@mui/icons-material/Dashboard';
 import PersonIcon from '@mui/icons-material/Person';
 import WorkIcon from '@mui/icons-material/Work';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
@@ -129,98 +127,7 @@ const EmployeList = ({ employes, onEdit, onDelete }) => {
         return colors[service] || colors.default;
     };
 
-    // Modern KPI Card component
-    const KPICard = ({ title, value, icon: Icon, color, description, delay = 0 }) => (
-        <Zoom in={true} style={{ transitionDelay: `${delay}ms` }}>
-            <Card
-                sx={{
-                    position: 'relative',
-                    overflow: 'hidden',
-                    borderRadius: 4,
-                    boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
-                    border: `1px solid ${alpha(color, 0.1)}`,
-                    background: darkMode
-                        ? `linear-gradient(135deg, ${alpha(color, 0.1)} 0%, ${alpha(color, 0.05)} 100%)`
-                        : `linear-gradient(135deg, ${color}08 0%, ${color}04 100%)`,
-                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                    cursor: 'pointer',
-                    '&:hover': {
-                        transform: 'translateY(-8px)',
-                        boxShadow: '0 16px 48px rgba(0,0,0,0.12)',
-                        '& .kpi-icon': {
-                            transform: 'scale(1.1) rotate(5deg)'
-                        },
-                        '& .kpi-value': {
-                            transform: 'scale(1.05)'
-                        }
-                    }
-                }}
-            >
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        top: -20,
-                        right: -20,
-                        width: 100,
-                        height: 100,
-                        background: `linear-gradient(135deg, ${alpha(color, 0.1)} 0%, ${alpha(color, 0.05)} 100%)`,
-                        borderRadius: '50%'
-                    }}
-                />
-                <CardContent sx={{ p: 3, position: 'relative' }}>
-                    <Box display="flex" alignItems="center" justifyContent="space-between">
-                        <Box>
-                            <Typography
-                                className="kpi-value"
-                                variant="h2"
-                                sx={{
-                                    fontWeight: 800,
-                                    color: color,
-                                    mb: 0.5,
-                                    fontFamily: 'Inter, sans-serif',
-                                    transition: 'transform 0.3s ease'
-                                }}
-                            >
-                                {value}
-                            </Typography>
-                            <Typography
-                                variant="h6"
-                                sx={{
-                                    color: 'text.primary',
-                                    fontWeight: 600,
-                                    fontSize: '1.1rem',
-                                    mb: 0.5
-                                }}
-                            >
-                                {title}
-                            </Typography>
-                            <Typography
-                                variant="body2"
-                                sx={{
-                                    color: 'text.secondary',
-                                    fontWeight: 400
-                                }}
-                            >
-                                {description}
-                            </Typography>
-                        </Box>
-                        <Avatar
-                            className="kpi-icon"
-                            sx={{
-                                bgcolor: alpha(color, 0.15),
-                                color: color,
-                                width: 64,
-                                height: 64,
-                                transition: 'all 0.3s ease'
-                            }}
-                        >
-                            <Icon fontSize="large" />
-                        </Avatar>
-                    </Box>
-                </CardContent>
-            </Card>
-        </Zoom>
-    );
+    // KPICard component removed since dashboard was removed
 
     // Safety check to ensure employes is an array
     if (!Array.isArray(employes)) {
@@ -263,86 +170,39 @@ const EmployeList = ({ employes, onEdit, onDelete }) => {
         );
     }
 
-    // Calculate statistics
-    const totalEmployees = employes.length;
-    const uniquePositions = [...new Set(employes.map(emp => emp.poste))].length;
-    const employeesWithSalary = employes.filter(emp => emp.salaire && emp.salaire > 0).length;
+    // No statistics needed since dashboard was removed
 
     return (
         <Container maxWidth="xl" sx={{ py: 4 }}>
-            {/* Modern Dashboard Header */}
+            {/* Simple Header */}
             <Fade in={true} timeout={800}>
-                <Box sx={{ mb: 5, textAlign: 'center' }}>
+                <Box sx={{ mb: 4, textAlign: 'center' }}>
                     <Typography
-                        variant="h2"
+                        variant="h4"
                         component="h1"
                         sx={{
-                            fontWeight: 800,
-                            fontSize: { xs: '2.5rem', md: '3.5rem' },
-                            background: 'linear-gradient(135deg, #1e3a5f 0%, #42a5f5 100%)',
-                            backgroundClip: 'text',
-                            WebkitBackgroundClip: 'text',
-                            color: 'transparent',
-                            mb: 2,
-                            fontFamily: 'Inter, sans-serif',
+                            fontWeight: 700,
+                            color: 'primary.main',
+                            mb: 1,
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
                             gap: 2
                         }}
                     >
-                        <DashboardIcon sx={{ fontSize: 'inherit', color: '#1e3a5f' }} />
-                        Tableau de Bord RH
+                        <PeopleIcon sx={{ fontSize: 'inherit' }} />
+                        Gestion des Employés
                     </Typography>
                     <Typography
-                        variant="h6"
+                        variant="subtitle1"
                         sx={{
                             color: 'text.secondary',
-                            fontWeight: 400,
-                            maxWidth: 600,
-                            mx: 'auto',
-                            lineHeight: 1.6
+                            fontWeight: 400
                         }}
                     >
                         Gérez efficacement vos ressources humaines
                     </Typography>
                 </Box>
-            </Fade>
-
-            {/* Enhanced KPI Cards */}
-            <Fade in={true} timeout={1000}>
-                <Grid container spacing={4} sx={{ mb: 5 }}>
-                    <Grid item xs={12} sm={4}>
-                        <KPICard
-                            title="Employés Actifs"
-                            value={totalEmployees}
-                            icon={PeopleIcon}
-                            color="#1976d2"
-                            description="Total des employés"
-                            delay={100}
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <KPICard
-                            title="Postes Différents"
-                            value={uniquePositions}
-                            icon={BusinessCenterIcon}
-                            color="#ff9800"
-                            description="Diversité des postes"
-                            delay={200}
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <KPICard
-                            title="Avec Salaire"
-                            value={employeesWithSalary}
-                            icon={AttachMoneyIcon}
-                            color="#4caf50"
-                            description="Salaires renseignés"
-                            delay={300}
-                        />
-                    </Grid>
-                </Grid>
             </Fade>
 
             {/* Modern Search and Filter Controls */}
@@ -619,145 +479,144 @@ const EmployeList = ({ employes, onEdit, onDelete }) => {
                             </TableHead>
                             <TableBody>
                                 {filteredAndSortedEmployes.map((emp, index) => (
-                                    <Zoom in={true} style={{ transitionDelay: `${index * 50}ms` }} key={emp.id}>
-                                        <TableRow
-                                            hover
-                                            sx={{
-                                                '&:hover': {
-                                                    backgroundColor: alpha(theme.palette.primary.main, 0.04),
-                                                    transform: 'scale(1.002)',
-                                                    cursor: 'pointer'
-                                                },
-                                                '&:nth-of-type(even)': {
-                                                    backgroundColor: alpha(theme.palette.action.hover, 0.02)
-                                                },
-                                                transition: 'all 0.2s ease-in-out',
-                                                borderLeft: `4px solid ${alpha(theme.palette.primary.main, 0.1)}`
-                                            }}
-                                        >
-                                            <TableCell sx={{ py: 2 }}>
-                                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                                                    <Avatar
+                                    <TableRow
+                                        key={emp.id}
+                                        hover
+                                        sx={{
+                                            '&:hover': {
+                                                backgroundColor: alpha(theme.palette.primary.main, 0.04),
+                                                transform: 'scale(1.002)',
+                                                cursor: 'pointer'
+                                            },
+                                            '&:nth-of-type(even)': {
+                                                backgroundColor: alpha(theme.palette.action.hover, 0.02)
+                                            },
+                                            transition: 'all 0.2s ease-in-out',
+                                            borderLeft: `4px solid ${alpha(theme.palette.primary.main, 0.1)}`
+                                        }}
+                                    >
+                                        <TableCell sx={{ py: 2 }}>
+                                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                                                <Avatar
+                                                    sx={{
+                                                        width: 40,
+                                                        height: 40,
+                                                        bgcolor: alpha(theme.palette.primary.main, 0.1),
+                                                        color: 'primary.main',
+                                                        fontSize: '0.9rem',
+                                                        fontWeight: 600
+                                                    }}
+                                                >
+                                                    {emp.nom[0]}{emp.prenom[0]}
+                                                </Avatar>
+                                                <Box>
+                                                    <Typography
+                                                        variant="subtitle1"
                                                         sx={{
-                                                            width: 40,
-                                                            height: 40,
-                                                            bgcolor: alpha(theme.palette.primary.main, 0.1),
+                                                            fontWeight: 600,
                                                             color: 'primary.main',
-                                                            fontSize: '0.9rem',
-                                                            fontWeight: 600
+                                                            textDecoration: 'none',
+                                                            '&:hover': {
+                                                                textDecoration: 'underline'
+                                                            }
+                                                        }}
+                                                        component={Link}
+                                                        to={`/employes/${emp.id}`}
+                                                    >
+                                                        {emp.nom}
+                                                    </Typography>
+                                                    <Typography variant="caption" color="text.secondary">
+                                                        CIN: {emp.cin}
+                                                    </Typography>
+                                                </Box>
+                                            </Box>
+                                        </TableCell>
+                                        <TableCell sx={{ py: 2 }}>
+                                            <Typography variant="body1" sx={{ fontWeight: 500, color: 'text.primary' }}>
+                                                {emp.prenom}
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell sx={{ py: 2 }}>
+                                            <Chip
+                                                label={emp.sexe === 'M' ? 'Masculin' : emp.sexe === 'F' ? 'Féminin' : 'Non renseigné'}
+                                                color={emp.sexe === 'M' ? 'primary' : emp.sexe === 'F' ? 'secondary' : 'default'}
+                                                size="small"
+                                                sx={{
+                                                    fontWeight: 600,
+                                                    borderRadius: 2
+                                                }}
+                                            />
+                                        </TableCell>
+                                        <TableCell sx={{ py: 2 }}>
+                                            <Typography variant="body1" sx={{ fontWeight: 500, color: 'text.primary' }}>
+                                                {emp.poste}
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell sx={{ py: 2 }}>
+                                            <Chip
+                                                label={emp.service}
+                                                color={getServiceColor(emp.service)}
+                                                size="small"
+                                                sx={{
+                                                    fontWeight: 600,
+                                                    borderRadius: 2
+                                                }}
+                                            />
+                                        </TableCell>
+                                        <TableCell sx={{ py: 2 }}>
+                                            {emp.salaire ? (
+                                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                                    <AttachMoneyIcon fontSize="small" color="success" />
+                                                    <Typography variant="body1" sx={{ fontWeight: 600, color: 'success.main' }}>
+                                                        {emp.salaire.toLocaleString()} DH
+                                                    </Typography>
+                                                </Box>
+                                            ) : (
+                                                <Typography variant="body2" color="text.secondary" sx={{ fontStyle: 'italic' }}>
+                                                    Non renseigné
+                                                </Typography>
+                                            )}
+                                        </TableCell>
+                                        <TableCell sx={{ py: 2 }}>
+                                            <Typography variant="body2" color="text.secondary">
+                                                {new Date(emp.dateEmbauche).toLocaleDateString('fr-FR')}
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell align="center" sx={{ py: 2 }}>
+                                            <Stack direction="row" spacing={1} justifyContent="center">
+                                                <Tooltip title="Modifier l'employé" arrow>
+                                                    <IconButton
+                                                        color="primary"
+                                                        onClick={() => onEdit(emp)}
+                                                        sx={{
+                                                            borderRadius: 2,
+                                                            '&:hover': {
+                                                                backgroundColor: alpha(theme.palette.primary.main, 0.1),
+                                                                transform: 'scale(1.1)'
+                                                            }
                                                         }}
                                                     >
-                                                        {emp.nom[0]}{emp.prenom[0]}
-                                                    </Avatar>
-                                                    <Box>
-                                                        <Typography
-                                                            variant="subtitle1"
-                                                            sx={{
-                                                                fontWeight: 600,
-                                                                color: 'primary.main',
-                                                                textDecoration: 'none',
-                                                                '&:hover': {
-                                                                    textDecoration: 'underline'
-                                                                }
-                                                            }}
-                                                            component={Link}
-                                                            to={`/employes/${emp.id}`}
-                                                        >
-                                                            {emp.nom}
-                                                        </Typography>
-                                                        <Typography variant="caption" color="text.secondary">
-                                                            CIN: {emp.cin}
-                                                        </Typography>
-                                                    </Box>
-                                                </Box>
-                                            </TableCell>
-                                            <TableCell sx={{ py: 2 }}>
-                                                <Typography variant="body1" sx={{ fontWeight: 500, color: 'text.primary' }}>
-                                                    {emp.prenom}
-                                                </Typography>
-                                            </TableCell>
-                                            <TableCell sx={{ py: 2 }}>
-                                                <Chip
-                                                    label={emp.sexe === 'M' ? 'Masculin' : emp.sexe === 'F' ? 'Féminin' : 'Non renseigné'}
-                                                    color={emp.sexe === 'M' ? 'primary' : emp.sexe === 'F' ? 'secondary' : 'default'}
-                                                    size="small"
-                                                    sx={{
-                                                        fontWeight: 600,
-                                                        borderRadius: 2
-                                                    }}
-                                                />
-                                            </TableCell>
-                                            <TableCell sx={{ py: 2 }}>
-                                                <Typography variant="body1" sx={{ fontWeight: 500, color: 'text.primary' }}>
-                                                    {emp.poste}
-                                                </Typography>
-                                            </TableCell>
-                                            <TableCell sx={{ py: 2 }}>
-                                                <Chip
-                                                    label={emp.service}
-                                                    color={getServiceColor(emp.service)}
-                                                    size="small"
-                                                    sx={{
-                                                        fontWeight: 600,
-                                                        borderRadius: 2
-                                                    }}
-                                                />
-                                            </TableCell>
-                                            <TableCell sx={{ py: 2 }}>
-                                                {emp.salaire ? (
-                                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                                        <AttachMoneyIcon fontSize="small" color="success" />
-                                                        <Typography variant="body1" sx={{ fontWeight: 600, color: 'success.main' }}>
-                                                            {emp.salaire.toLocaleString()} DH
-                                                        </Typography>
-                                                    </Box>
-                                                ) : (
-                                                    <Typography variant="body2" color="text.secondary" sx={{ fontStyle: 'italic' }}>
-                                                        Non renseigné
-                                                    </Typography>
-                                                )}
-                                            </TableCell>
-                                            <TableCell sx={{ py: 2 }}>
-                                                <Typography variant="body2" color="text.secondary">
-                                                    {new Date(emp.dateEmbauche).toLocaleDateString('fr-FR')}
-                                                </Typography>
-                                            </TableCell>
-                                            <TableCell align="center" sx={{ py: 2 }}>
-                                                <Stack direction="row" spacing={1} justifyContent="center">
-                                                    <Tooltip title="Modifier l'employé" arrow>
-                                                        <IconButton
-                                                            color="primary"
-                                                            onClick={() => onEdit(emp)}
-                                                            sx={{
-                                                                borderRadius: 2,
-                                                                '&:hover': {
-                                                                    backgroundColor: alpha(theme.palette.primary.main, 0.1),
-                                                                    transform: 'scale(1.1)'
-                                                                }
-                                                            }}
-                                                        >
-                                                            <EditIcon />
-                                                        </IconButton>
-                                                    </Tooltip>
-                                                    <Tooltip title="Supprimer l'employé" arrow>
-                                                        <IconButton
-                                                            color="error"
-                                                            onClick={() => handleDelete(emp.id)}
-                                                            sx={{
-                                                                borderRadius: 2,
-                                                                '&:hover': {
-                                                                    backgroundColor: alpha(theme.palette.error.main, 0.1),
-                                                                    transform: 'scale(1.1)'
-                                                                }
-                                                            }}
-                                                        >
-                                                            <DeleteIcon />
-                                                        </IconButton>
-                                                    </Tooltip>
-                                                </Stack>
-                                            </TableCell>
-                                        </TableRow>
-                                    </Zoom>
+                                                        <EditIcon />
+                                                    </IconButton>
+                                                </Tooltip>
+                                                <Tooltip title="Supprimer l'employé" arrow>
+                                                    <IconButton
+                                                        color="error"
+                                                        onClick={() => handleDelete(emp.id)}
+                                                        sx={{
+                                                            borderRadius: 2,
+                                                            '&:hover': {
+                                                                backgroundColor: alpha(theme.palette.error.main, 0.1),
+                                                                transform: 'scale(1.1)'
+                                                            }
+                                                        }}
+                                                    >
+                                                        <DeleteIcon />
+                                                    </IconButton>
+                                                </Tooltip>
+                                            </Stack>
+                                        </TableCell>
+                                    </TableRow>
                                 ))}
                                 {filteredAndSortedEmployes.length === 0 && searchTerm && (
                                     <TableRow>

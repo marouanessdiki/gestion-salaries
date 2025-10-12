@@ -4,5 +4,6 @@ public record AttestationTypeResponse(
     Long id,
     String type,
     String value,
-    String label
+    String label,
+    String jrxml
 ) {}

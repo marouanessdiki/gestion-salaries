@@ -111,6 +111,6 @@ public class AttestationTemplateServiceImpl implements IAttestationTemplateServi
     private AttestationTypeResponse mapToResponse(AttestationTemplate template) {
         String value = template.getName().toUpperCase(Locale.ROOT);
         String label = "Attestation " + value.charAt(0) + value.substring(1).toLowerCase(Locale.ROOT);
-        return new AttestationTypeResponse(template.getId(), "ATTESTATION", value, label);
+        return new AttestationTypeResponse(template.getId(), "ATTESTATION", value, label, template.getJrxml());
     }
 }
